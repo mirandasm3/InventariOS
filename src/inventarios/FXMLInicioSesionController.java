@@ -44,6 +44,7 @@ public class FXMLInicioSesionController implements Initializable {
         boolean valido = true;
         lbUsuarioError.setText("");
         lbPasswordError.setText("");
+        //hola
         if(usuario.isEmpty()){
             valido = false;
             lbUsuarioError.setText("Número de personal es requerido.");
