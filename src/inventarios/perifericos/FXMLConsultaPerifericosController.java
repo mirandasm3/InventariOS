@@ -78,7 +78,7 @@ public class FXMLConsultaPerifericosController implements Initializable {
 
     private void llenarCombos(){
         ArrayList<String> estados = new ArrayList<String>();
-        estados.add("CC1");
+        estados.add("CC2");
 
         listaCC = FXCollections.observableArrayList(estados);
         
