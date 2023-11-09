@@ -93,11 +93,34 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicBtnUsuarios(ActionEvent event) {
+        try{
+             Parent vista = FXMLLoader.load(getClass().getResource("usuarios/FXMLRegistraUsuario.fxml"));
+             Scene escenaAdmin = new Scene(vista);
+             Stage escenarioNuevo = new Stage();
+             escenarioNuevo.setTitle("Registrar Usurio");
+             escenarioNuevo.setScene(escenaAdmin);
+             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+             escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void clicBtnCentrosComputo(ActionEvent event) {
+        try{
+             Parent vista = FXMLLoader.load(getClass().getResource("centroscomputo/FXMLRegistraCC.fxml"));
+             Scene escenaAdmin = new Scene(vista);
+             Stage escenarioNuevo = new Stage();
+             escenarioNuevo.setTitle("Registrar CC");
+             escenarioNuevo.setScene(escenaAdmin);
+             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+             escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
     }
+    
 
     @FXML
     private void cerrarSesion(ActionEvent event) {

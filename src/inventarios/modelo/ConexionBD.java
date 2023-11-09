@@ -16,7 +16,7 @@ public class ConexionBD {
     private static String puerto = "3306";
     private static String urlConexion = "jdbc:mysql://"+ip+":"+puerto+"/"+bd+"?allowPublicKeyRetrieval=true&useSSL=false";
     private static String usuario = "root";
-    private static String password = "2282879736Gaga";
+    private static String password = "2282879736Lana";
     public static Connection abrirConexionBD(){
         Connection conexionBD = null;
         try {
