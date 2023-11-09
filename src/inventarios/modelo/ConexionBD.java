@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author miran
+ * @author raudel
  */
 public class ConexionBD {
     private static String driver = "com.mysql.cj.jdbc.Driver";
@@ -19,13 +19,14 @@ public class ConexionBD {
     private static String password = "2282879736Lana";
     public static Connection abrirConexionBD(){
         Connection conexionBD = null;
-        try {
+        try {//a
             Class.forName(driver);
             conexionBD = DriverManager.getConnection(urlConexion, usuario, password);
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         } catch (SQLException ex) {
             ex.printStackTrace();
+            ex.getMessage();
         }
         return conexionBD;
         }
