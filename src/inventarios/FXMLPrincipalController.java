@@ -53,6 +53,8 @@ public class FXMLPrincipalController implements Initializable {
     private Button btnCC1;
     @FXML
     private Button btnConsultarUsuario;
+    @FXML
+    private Button btnConsultarCC;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -158,6 +160,21 @@ public class FXMLPrincipalController implements Initializable {
              Scene escenaAdmin = new Scene(vista);
              Stage escenarioNuevo = new Stage();
              escenarioNuevo.setTitle("Consultarar Usurios");
+             escenarioNuevo.setScene(escenaAdmin);
+             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+             escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    private void clicBtnConsultarCC(ActionEvent event) {
+        try{
+             Parent vista = FXMLLoader.load(getClass().getResource("centroscomputo/FXMLConsultaCC.fxml"));
+             Scene escenaAdmin = new Scene(vista);
+             Stage escenarioNuevo = new Stage();
+             escenarioNuevo.setTitle("Consultar CC");
              escenarioNuevo.setScene(escenaAdmin);
              escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
              escenarioNuevo.showAndWait();

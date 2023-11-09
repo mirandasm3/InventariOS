@@ -11,6 +11,8 @@ import javafx.scene.control.Alert;
 import inventarios.pojo.CentroComputo;
 import inventarios.modelo.ConexionBD;
 import inventarios.util.Utilidades;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -46,8 +48,41 @@ public class CentroComputoDAO {
         }else{
             Utilidades.mostrarAlertaSimple("Error", "Por el momento no hay conexión con la base de datos...", Alert.AlertType.ERROR);
         }
-        return registrado;
+        return registrado; 
+    }
         
+    public static ArrayList<CentroComputo> consultarCCs() throws SQLException{
+        
+        ArrayList<CentroComputo> ccsBD = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+
+            try {                
+                
+               String consulta = "SELECT * from centrocomputo";
+               PreparedStatement consultaObtenerTodos = conexionBD.prepareStatement(consulta);
+               ResultSet resultadoConsulta = consultaObtenerTodos.executeQuery();
+               
+               ccsBD = new ArrayList<>();
+               
+               while(resultadoConsulta.next()){
+                   
+                   CentroComputo temp = new CentroComputo();
+                   temp.setClave(resultadoConsulta.getString("clave"));
+                   temp.setNumero(resultadoConsulta.getInt("numero"));;
+
+                   ccsBD.add(temp);
+               }
+               
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                
+            } finally{
+                conexionBD.close();
+            }
+            
+        }
+        return ccsBD;
     }
     
 }

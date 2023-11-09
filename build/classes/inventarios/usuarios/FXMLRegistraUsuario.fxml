@@ -28,7 +28,7 @@
       <TextField fx:id="tfNombre" layoutX="222.0" layoutY="97.0" />
       <TextField fx:id="tfNumPersonal" layoutX="223.0" layoutY="148.0" />
       <TextField fx:id="tfPassword" layoutX="227.0" layoutY="199.0" />
-      <TextField fx:id="tfContacto" layoutX="227.0" layoutY="254.0" />
+      <TextField fx:id="tfContacto" layoutX="227.0" layoutY="254.0" promptText="xxxxxxx@uv.com.mx" />
       <Button layoutX="301.0" layoutY="331.0" mnemonicParsing="false" onAction="#clicBtnRegistrar" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Medium Cond" size="12.0" />

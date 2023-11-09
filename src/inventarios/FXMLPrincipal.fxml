@@ -98,12 +98,17 @@
             <Font name="Franklin Gothic Demi Cond" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="btnCC1" layoutX="568.0" layoutY="279.0" mnemonicParsing="false" onAction="#clicBtnCentrosComputo" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #335871;" text="Centros de cómputo" textFill="WHITE">
+      <Button fx:id="btnCC1" layoutX="568.0" layoutY="279.0" mnemonicParsing="false" onAction="#clicBtnCentrosComputo" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #335871;" text="Registrar Centro de cómputo" textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi Cond" size="21.0" />
          </font>
       </Button>
       <Button fx:id="btnConsultarUsuario" layoutX="316.0" layoutY="412.0" mnemonicParsing="false" onAction="#clicBtnConsultarUsuarios" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Consultar Usuarios" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnConsultarCC" layoutX="568.0" layoutY="412.0" mnemonicParsing="false" onAction="#clicBtnConsultarCC" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #335871;" text="Consultar Centros de cómputo" textFill="WHITE">
          <font>
             <Font name="Franklin Gothic Demi Cond" size="21.0" />
          </font>
