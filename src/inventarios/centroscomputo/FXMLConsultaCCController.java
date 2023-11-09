@@ -6,10 +6,12 @@ package inventarios.centroscomputo;
 
 import inventarios.dao.CentroComputoDAO;
 import inventarios.pojo.CentroComputo;
+import inventarios.pojo.ResultadoOperacion;
 import inventarios.util.Utilidades;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +19,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -67,6 +71,36 @@ public class FXMLConsultaCCController implements Initializable {
 
     @FXML
     private void clicBtnEliminarCC(ActionEvent event) {
+         CentroComputo ccSeleccionado = tvCC.getSelectionModel().getSelectedItem();
+        if (ccSeleccionado == null) {
+            Utilidades.mostrarAlertaSimple("Falta selección", "Debe seleccionar un registro de la tabla", Alert.AlertType.WARNING);
+        } else {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación de eliminación");
+            alert.setHeaderText("¿Desea eliminar el centro de cómputo seleccionado?");
+            alert.setContentText("Esta acción no se puede deshacer.");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+            
+                CentroComputoDAO ccDao = new CentroComputoDAO();
+                ResultadoOperacion resultado;
+                try {
+                    resultado = ccDao.eliminarCC(ccSeleccionado.getClave());
+                    if (resultado.isError()) {
+                        Utilidades.mostrarAlertaSimple("Error", "Error en la eliminación.", Alert.AlertType.ERROR);
+                    } else {
+                        Utilidades.mostrarAlertaSimple("Eliminación exitosa", "Centro de cómputo eliminado con éxito.", Alert.AlertType.INFORMATION);
+                        listaCCs.remove(ccSeleccionado);
+                        tvCC.refresh();
+                    }
+                } catch (SQLException ex) {
+                    Utilidades.mostrarAlertaSimple("Error", "No se pudo eliminar el registro de usuario.", Alert.AlertType.ERROR);
+                }
+            }else{
+                alert.close();
+            }
+        }
     }
     
      private void llenarTablaCCs(){

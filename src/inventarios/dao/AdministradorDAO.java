@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import inventarios.pojo.Administrador;
 import inventarios.util.Utilidades;
 import inventarios.modelo.ConexionBD;
+import inventarios.pojo.ResultadoOperacion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -88,6 +89,36 @@ public class AdministradorDAO {
             
         }
         return usuariosBD;
+    }
+     
+    public static ResultadoOperacion eliminarUsuario(int numeroPersonal) throws SQLException{
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String sentencia = "DELETE from administrador WHERE(numeroPersonal = ?)";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, numeroPersonal);
+                
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Registro de usuario eliminado correctamente.");
+                }else{
+                    respuesta.setMensaje("No se pudo eliminar el usuario.");
+                }
+            } catch (SQLException e) {
+                respuesta.setMensaje(e.getMessage());
+            } finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setMensaje("Por el momento no hay conexión con la base de datos, Intente más tarde.");
+        }
+        return respuesta;           
     }
     
 }

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javafx.scene.control.Alert;
 import inventarios.pojo.CentroComputo;
 import inventarios.modelo.ConexionBD;
+import inventarios.pojo.ResultadoOperacion;
 import inventarios.util.Utilidades;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -83,6 +84,36 @@ public class CentroComputoDAO {
             
         }
         return ccsBD;
+    }
+    
+      public static ResultadoOperacion eliminarCC(String clave) throws SQLException{
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String sentencia = "DELETE from centrocomputo WHERE(clave = ?)";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, clave);
+                
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Registro de centro de cómputo eliminado correctamente.");
+                }else{
+                    respuesta.setMensaje("No se pudo eliminar el centro de cómputo.");
+                }
+            } catch (SQLException e) {
+                respuesta.setMensaje(e.getMessage());
+            } finally{
+                conexionBD.close();
+            }
+        }else{
+            respuesta.setMensaje("Por el momento no hay conexión con la base de datos, Intente más tarde.");
+        }
+        return respuesta;           
     }
     
 }
