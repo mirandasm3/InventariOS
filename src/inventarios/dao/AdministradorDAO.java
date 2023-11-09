@@ -11,12 +11,15 @@ import javafx.scene.control.Alert;
 import inventarios.pojo.Administrador;
 import inventarios.util.Utilidades;
 import inventarios.modelo.ConexionBD;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
  * @author LENOVO
  */
 public class AdministradorDAO {
+    
     public static boolean registrarUsuario(Administrador administrador) throws SQLException{
         
         boolean registrado = false;
@@ -49,6 +52,42 @@ public class AdministradorDAO {
         }
         return registrado;
         
+    }
+    
+     public static ArrayList<Administrador> consultarUsuarios() throws SQLException{
+
+        ArrayList<Administrador> usuariosBD = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+
+            try {                
+                
+               String consulta = "SELECT * from administrador";
+               PreparedStatement consultaObtenerTodos = conexionBD.prepareStatement(consulta);
+               ResultSet resultadoConsulta = consultaObtenerTodos.executeQuery();
+               
+               usuariosBD = new ArrayList<>();
+               
+               while(resultadoConsulta.next()){
+                   
+                   Administrador temp = new Administrador();
+                   temp.setNombre(resultadoConsulta.getString("nombre"));
+                   temp.setNumeroPersonal(resultadoConsulta.getInt("numeroPersonal"));
+                   temp.setPassword(resultadoConsulta.getString("password"));
+                   temp.setContacto(resultadoConsulta.getString("contacto"));
+
+                   usuariosBD.add(temp);
+               }
+               
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                
+            } finally{
+                conexionBD.close();
+            }
+            
+        }
+        return usuariosBD;
     }
     
 }

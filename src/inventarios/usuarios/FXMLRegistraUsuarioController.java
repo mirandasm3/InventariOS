@@ -48,15 +48,11 @@ public class FXMLRegistraUsuarioController implements Initializable {
         String password = tfPassword.getText();
         String contacto = tfContacto.getText();
         
-        if(nombre.isEmpty() || validarCaracteres(nombre) == false || password.isEmpty() || validarCaracteres(password) == false
-                || contacto.isEmpty() || validarCaracteres(password) == false){
+        if(nombre.isEmpty() || validarCaracteresNombre(nombre) == false || password.isEmpty() || validarCaracteres(password) == false
+                || contacto.isEmpty() || validarCaracteresContacto(contacto) == false || numeroPersonal.isEmpty() || validarCaracteresEnteros(numeroPersonal) == false){
             
             Utilidades.mostrarAlertaSimple("Error", "No puede haber campos vacíos o caracteres inválidos", Alert.AlertType.ERROR);
             
-        }else if(numeroPersonal.isEmpty() || validarCaracteresEnteros(numeroPersonal) == false){
-            
-            Utilidades.mostrarAlertaSimple("Error", "No puede haber campos vacíos o caracteres inválidos", Alert.AlertType.ERROR);
-           
         }else{
             
              try{
@@ -87,11 +83,27 @@ public class FXMLRegistraUsuarioController implements Initializable {
         
         return cadena.matches("-?([a-zA-Z_0-9]*)?");
     }
-    
+     
+     private boolean validarCaracteresNombre(String cadena){
+        return cadena.matches("^[a-zA-Z ]+$");
+    }
+       
      private boolean validarCaracteresEnteros(String cadena){
         
         return cadena.matches("\\d+");
     }
+     
+     private boolean validarCaracteresContacto(String cadena){
+        boolean valido;
+        
+        if(cadena.endsWith("@uv.com.mx")){
+            valido = true;
+       }else{
+            valido = false;
+        }
+        
+        return valido;
+     }
      
     private void cerrarVentana(){
        
