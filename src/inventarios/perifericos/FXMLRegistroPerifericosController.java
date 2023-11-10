@@ -107,7 +107,7 @@ public class FXMLRegistroPerifericosController implements Initializable {
         }else {
             PerifericoDAO pDao = new PerifericoDAO();
             try {
-                
+                 
                 ResultadoOperacion resultado = pDao.registrarPeriferico(periferico);
                 if (resultado.isError()) {
                     Utilidades.mostrarAlertaSimple("Error", "Error en el registro.", Alert.AlertType.ERROR);
