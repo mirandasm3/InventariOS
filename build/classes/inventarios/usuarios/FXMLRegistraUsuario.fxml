@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.usuarios.FXMLRegistraUsuarioController">
+   <children>
+      <Label layoutX="105.0" layoutY="105.0" text="Nombre">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font></Label>
+      <Label layoutX="75.0" layoutY="134.0" prefHeight="54.0" prefWidth="93.0" text="Número de personal">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font></Label>
+      <Label layoutX="100.0" layoutY="204.0" text="Password">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font></Label>
+      <Label layoutX="102.0" layoutY="259.0" text="Contacto">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font></Label>
+      <TextField fx:id="tfNombre" layoutX="222.0" layoutY="97.0" />
+      <TextField fx:id="tfNumPersonal" layoutX="223.0" layoutY="148.0" />
+      <TextField fx:id="tfPassword" layoutX="227.0" layoutY="199.0" />
+      <TextField fx:id="tfContacto" layoutX="227.0" layoutY="254.0" promptText="xxxxxxx@uv.com.mx" />
+      <Button layoutX="301.0" layoutY="331.0" mnemonicParsing="false" onAction="#clicBtnRegistrar" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font></Button>
+      <Button layoutX="386.0" layoutY="331.0" mnemonicParsing="false" onAction="#clicBtnCancelar" style="-fx-background-color: #EE6060;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

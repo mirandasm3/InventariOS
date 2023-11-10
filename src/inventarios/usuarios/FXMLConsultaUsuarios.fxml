@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.usuarios.FXMLConsultaUsuariosController">
+   <children>
+      <Button fx:id="btnEliminar" layoutX="862.0" layoutY="472.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #EE6060;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnModificar" layoutX="862.0" layoutY="409.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #2c4961;" text="Modificar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="862.0" layoutY="530.0" mnemonicParsing="false" onAction="#volver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE" />
+      <TableView fx:id="tvUsuarios" layoutX="63.0" layoutY="182.0" prefHeight="381.0" prefWidth="758.0">
+         <columns>
+            <TableColumn fx:id="clNombre" prefWidth="179.0" text="Nombre" />
+            <TableColumn fx:id="clNoPersonal" prefWidth="216.0" text="No. de personal" />
+            <TableColumn fx:id="clPassword" prefWidth="186.0" text="Password" />
+            <TableColumn fx:id="clContacto" prefWidth="176.0" text="Contacto" />
+         </columns>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="116.0" layoutX="10.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="1037.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="58.0" layoutX="10.0" layoutY="638.0" stroke="BLACK" strokeType="INSIDE" width="1037.0" />
+   </children>
+</AnchorPane>
