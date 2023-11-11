@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import inventarios.dao.AdministradorDAO;
 import inventarios.pojo.Administrador;
 import inventarios.util.Utilidades;
+import java.util.Optional;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -56,17 +58,25 @@ public class FXMLRegistraUsuarioController implements Initializable {
         }else{
             
              try{
-                    int numeroEntero = Integer.parseInt(numeroPersonal);
-                    Administrador administrador = new Administrador(nombre, numeroEntero, password, contacto);
-                    
-                    
-                    if(AdministradorDAO.registrarUsuario(administrador) == false){
-                        Utilidades.mostrarAlertaSimple("Error", "No se ha podido registrar el Usuario", Alert.AlertType.ERROR);
-                    
-                    }else{
-                        Utilidades.mostrarAlertaSimple("Exito", "Usuario registrado con exito", Alert.AlertType.INFORMATION);
-                        cerrarVentana();
-                    }
+                 int numeroEntero = Integer.parseInt(numeroPersonal);
+                 Administrador usuarioBuscar = new AdministradorDAO().buscarUsuario(numeroEntero);
+                 
+                 if(usuarioBuscar.getNumeroPersonal() < 0){
+                 
+                        
+                        Administrador administrador = new Administrador(nombre, numeroEntero, password, contacto);
+
+
+                        if(AdministradorDAO.registrarUsuario(administrador) == false){
+                            Utilidades.mostrarAlertaSimple("Error", "No se ha podido registrar el Usuario", Alert.AlertType.ERROR);
+
+                        }else{
+                            Utilidades.mostrarAlertaSimple("Exito", "Usuario registrado con exito", Alert.AlertType.INFORMATION);
+                            cerrarVentana();
+                        }
+                 }else{
+                      Utilidades.mostrarAlertaSimple("Error", "El Numero de empleado que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);                   
+                 }
                     
                 }catch(SQLException e){
                     Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde", Alert.AlertType.NONE);
@@ -106,9 +116,19 @@ public class FXMLRegistraUsuarioController implements Initializable {
      }
      
     private void cerrarVentana(){
-       
-        Stage escenarioRegistro = (Stage) tfContacto.getScene().getWindow();
-        escenarioRegistro.close(); 
+               
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText("¿Desea cancelar el registro?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                Stage escenarioRegistro = (Stage) tfContacto.getScene().getWindow();
+                escenarioRegistro.close();
+            }else{
+                
+            }
+ 
    }
     
 }

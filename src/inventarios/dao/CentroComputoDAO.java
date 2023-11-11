@@ -115,5 +115,31 @@ public class CentroComputoDAO {
         }
         return respuesta;           
     }
+      
+       public static CentroComputo buscarCC(String clave) throws SQLException{
+        CentroComputo ccTemporal = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM centrocomputo WHERE (clave = ?)";
+                PreparedStatement consultaDB = conexionBD.prepareStatement(consulta);
+                consultaDB.setString(1, clave);
+                ResultSet resultadoConsulta = consultaDB.executeQuery();
+                ccTemporal = new CentroComputo();                
+                if(resultadoConsulta.next()){
+                    ccTemporal.setClave(resultadoConsulta.getString("clave"));
+                    ccTemporal.setNumero(resultadoConsulta.getInt("numero"));
+
+                }else{
+                    ccTemporal.setNumero(-1);
+                }
+            } catch (SQLException s) {
+                s.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return ccTemporal;
+    }
     
 }

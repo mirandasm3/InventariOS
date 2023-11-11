@@ -29,7 +29,12 @@
             <TableColumn fx:id="clContacto" prefWidth="176.0" text="Contacto" />
          </columns>
       </TableView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="116.0" layoutX="10.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" width="1037.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="58.0" layoutX="10.0" layoutY="638.0" stroke="BLACK" strokeType="INSIDE" width="1037.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="127.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="1047.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="58.0" layoutY="638.0" stroke="BLACK" strokeType="INSIDE" width="1047.0" />
+      <Text fill="WHITE" layoutX="63.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="28.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

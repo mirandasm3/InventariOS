@@ -121,4 +121,32 @@ public class AdministradorDAO {
         return respuesta;           
     }
     
+    public static Administrador buscarUsuario(int numeroPersonal) throws SQLException{
+        Administrador usuarioTemporal = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM administrador WHERE (numeroPersonal = ?)";
+                PreparedStatement consultaDB = conexionBD.prepareStatement(consulta);
+                consultaDB.setInt(1, numeroPersonal);
+                ResultSet resultadoConsulta = consultaDB.executeQuery();
+                usuarioTemporal = new Administrador();                
+                if(resultadoConsulta.next()){
+                    usuarioTemporal.setNombre(resultadoConsulta.getString("nombre"));
+                    usuarioTemporal.setNumeroPersonal(resultadoConsulta.getInt("numeroPersonal"));
+                    usuarioTemporal.setPassword(resultadoConsulta.getString("password"));
+                    usuarioTemporal.setContacto(resultadoConsulta.getString("contacto"));
+
+                }else{
+                    usuarioTemporal.setNumeroPersonal(-1);
+                }
+            } catch (SQLException s) {
+                s.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return usuarioTemporal;
+    }
+    
 }

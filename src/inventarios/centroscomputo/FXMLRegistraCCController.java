@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import inventarios.dao.CentroComputoDAO;
 import inventarios.pojo.CentroComputo;
 import inventarios.util.Utilidades;
+import java.util.Optional;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -53,6 +55,11 @@ public class FXMLRegistraCCController implements Initializable {
         }else{
             
              try{
+                 
+                 CentroComputo ccBuscar = new CentroComputoDAO().buscarCC(clave);
+                 
+                 if(ccBuscar.getNumero() < 0){
+                     
                     int numeroEntero = Integer.parseInt(numero);
                     CentroComputo cc = new CentroComputo(clave, numeroEntero);
                     
@@ -63,9 +70,12 @@ public class FXMLRegistraCCController implements Initializable {
                         Utilidades.mostrarAlertaSimple("Exito", "Centro de computo registrado con exito", Alert.AlertType.INFORMATION);
                         cerrarVentana();
                     }
+                 }else{
+                    Utilidades.mostrarAlertaSimple("Error", "La clave que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);
+                 }
                     
                 }catch(SQLException e){
-                    Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde", Alert.AlertType.NONE);
+                    Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde", Alert.AlertType.ERROR);
                 }
         }
     }
@@ -86,9 +96,19 @@ public class FXMLRegistraCCController implements Initializable {
     }
      
     private void cerrarVentana(){
-       
-        Stage escenarioRegistro = (Stage) tfClave.getScene().getWindow();
-        escenarioRegistro.close(); 
+                      
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText("¿Desea cancelar el registro?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                Stage escenarioRegistro = (Stage) tfClave.getScene().getWindow();
+                escenarioRegistro.close(); 
+            }else{
+                
+            }
+ 
    }
     
 }
