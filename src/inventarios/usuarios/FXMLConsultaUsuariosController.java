@@ -69,7 +69,7 @@ public class FXMLConsultaUsuariosController implements Initializable {
         } else {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmación de eliminación");
-            alert.setHeaderText("¿Desea eliminar el periférico seleccionado?");
+            alert.setHeaderText("¿Desea eliminar el usuario seleccionado?");
             alert.setContentText("Esta acción no se puede deshacer.");
 
             Optional<ButtonType> result = alert.showAndWait();
@@ -109,7 +109,7 @@ public class FXMLConsultaUsuariosController implements Initializable {
 
                 Scene escenaAdmin = new Scene(vista);
                 Stage escenarioNuevo = new Stage();
-                escenarioNuevo.setTitle("Edición de administrador");
+                escenarioNuevo.setTitle("Edición de usuario");
                 escenarioNuevo.setScene(escenaAdmin);
                 escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
                 escenarioNuevo.showAndWait();

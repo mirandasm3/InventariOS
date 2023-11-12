@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -37,5 +38,14 @@
             <Font name="Franklin Gothic Medium Cond" size="28.0" />
          </font>
       </Text>
+      <Button layoutX="100.0" layoutY="520.0" mnemonicParsing="false" onAction="#llenarTablaCCs" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 100; -fx-background-color: #edb855;" textFill="#edb855">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

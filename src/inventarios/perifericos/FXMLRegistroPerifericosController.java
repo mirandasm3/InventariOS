@@ -11,8 +11,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,8 +51,6 @@ public class FXMLRegistroPerifericosController implements Initializable {
     private TableColumn clMarca;
     @FXML
     private TableColumn clEstado;
-    @FXML
-    private TableColumn clCC;
     private ObservableList<String> listaEstado;
     private ObservableList<String> listaTipo;
     private ObservableList<Periferico> listaPerifericos = FXCollections.observableArrayList();
@@ -69,7 +65,6 @@ public class FXMLRegistroPerifericosController implements Initializable {
         clTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         clMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
         clEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        clCC.setCellValueFactory(new PropertyValueFactory<>("idCentroComputo"));
         
         tvPeriferico.setItems(listaPerifericos);
     }
@@ -124,6 +119,7 @@ public class FXMLRegistroPerifericosController implements Initializable {
         
         try {
             int idCentro = CentroComputoDAO.buscarCC(claveCC).getIdCC();
+            String clave = CentroComputoDAO.buscarCC(claveCC).getClave();
             periferico.setIdCentroComputo(idCentro);
         } catch (SQLException ex) {
             Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);

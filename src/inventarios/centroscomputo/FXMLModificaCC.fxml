@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.centroscomputo.FXMLModificaCCController">
+   <children>
+      <Button layoutX="293.0" layoutY="311.0" mnemonicParsing="false" onAction="#clicBtnModificar" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: #364450;" text="Modificar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="429.0" layoutY="311.0" mnemonicParsing="false" onAction="#clicBtnCancelar" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: #EE6060;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="406.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="195.0" />
+      <GridPane layoutX="235.0" layoutY="135.0" prefHeight="90.0" prefWidth="302.0">
+         <children>
+            <Label text="Clave">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="22.0" />
+               </font>
+            </Label>
+            <Label prefHeight="28.0" prefWidth="146.0" text="Número" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfClave" GridPane.columnIndex="1" />
+            <TextField fx:id="tfNumero" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="116.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="218.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

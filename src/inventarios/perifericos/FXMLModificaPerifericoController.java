@@ -102,6 +102,7 @@ public class FXMLModificaPerifericoController implements Initializable {
         }else {
             PerifericoDAO pDao = new PerifericoDAO();
             try {
+                
                 ResultadoOperacion resultado = pDao.modificarPeriferico(id, perifericoNuevo);
                 if (resultado.isError()) {
                     Utilidades.mostrarAlertaSimple("Error", "Error en el registro de actualización.", Alert.AlertType.ERROR);

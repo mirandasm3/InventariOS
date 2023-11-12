@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class CentroComputoDAO {
     
-        public static boolean registrarCentroComputo(CentroComputo cc) throws SQLException{
+    public static boolean registrarCentroComputo(CentroComputo cc) throws SQLException{
         
         boolean registrado = false;
         
@@ -84,7 +84,7 @@ public class CentroComputoDAO {
         return ccsBD;
     }
     
-      public static ResultadoOperacion eliminarCC(String clave) throws SQLException{
+    public static ResultadoOperacion eliminarCC(String clave) throws SQLException{
         ResultadoOperacion respuesta = new ResultadoOperacion();
         respuesta.setError(true);
         respuesta.setFilasAfectadas(-1);
@@ -114,7 +114,9 @@ public class CentroComputoDAO {
         return respuesta;           
     }
       
-       public static CentroComputo buscarCC(String clave) throws SQLException{
+      
+      
+    public static CentroComputo buscarCC(String clave) throws SQLException{
         CentroComputo ccTemporal = null;
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
@@ -140,5 +142,46 @@ public class CentroComputoDAO {
         }
         return ccTemporal;
     }
+    
+    public static ResultadoOperacion modificarCC(int idCC, CentroComputo ccNuevo) throws SQLException{
+        
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        
+        if(conexionBD != null){
+           
+            try {
+
+                String sentencia = "UPDATE centrocomputo set clave = ?, numero = ? WHERE (idcentrocomputo = ?)";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, ccNuevo.getClave());
+                prepararSentencia.setInt(2, ccNuevo.getNumero());
+
+                prepararSentencia.setInt(3, idCC);
+
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Centro de cómputo modificado con éxito.");
+                }else{
+                    respuesta.setMensaje("No se pudo modificar la información del centro de cómputo.");
+                }
+                
+            } catch (SQLException e) {
+                respuesta.setMensaje(e.getMessage());
+                
+            } finally{
+                conexionBD.close();
+            }
+            
+        }else{
+            respuesta.setMensaje("Error en la conexión con la base de datos. Intente de nuevo más tarde.");
+        }
+        return respuesta;           
+    }
+    
     
 }

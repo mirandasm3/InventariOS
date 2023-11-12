@@ -3,6 +3,7 @@ package inventarios.usuarios;
 
 import inventarios.dao.AdministradorDAO;
 import inventarios.pojo.Administrador;
+import inventarios.pojo.CentroComputo;
 import inventarios.pojo.ResultadoOperacion;
 import inventarios.util.Utilidades;
 import java.net.URL;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
  * @author diana
  */
 public class FXMLModificaUsuarioController implements Initializable {
+    
     Administrador administrador = new Administrador();
     @FXML
     private TextField tfNombre;
@@ -130,5 +132,5 @@ public class FXMLModificaUsuarioController implements Initializable {
         tfContacto.setText(oldContacto);
         tfNumPersonal.setText(str);
     }
-    
+
 }
