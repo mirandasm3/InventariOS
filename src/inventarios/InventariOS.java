@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author diana
+ * @author e6
  */
 public class InventariOS extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLInicioSesion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
         
         Scene scene = new Scene(root);
         

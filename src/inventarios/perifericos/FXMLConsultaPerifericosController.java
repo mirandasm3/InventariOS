@@ -34,8 +34,9 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author miran
+ * @author diana
  */
+
 public class FXMLConsultaPerifericosController implements Initializable {
 
     @FXML

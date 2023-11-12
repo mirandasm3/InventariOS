@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 
 /**
  *
- * @author miran
+ * @author diana
  */
 public class Utilidades {
     public static void mostrarAlertaSimple(String titulo, String mensaje, Alert.AlertType tipo){

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package inventarios.usuarios;
 
 import java.net.URL;
@@ -22,7 +19,7 @@ import javafx.scene.control.ButtonType;
 /**
  * FXML Controller class
  *
- * @author LENOVO
+ * @author raudel
  */
 public class FXMLRegistraUsuarioController implements Initializable {
 
@@ -35,12 +32,9 @@ public class FXMLRegistraUsuarioController implements Initializable {
     @FXML
     private TextField tfContacto;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }    
 
     @FXML
@@ -72,7 +66,8 @@ public class FXMLRegistraUsuarioController implements Initializable {
 
                         }else{
                             Utilidades.mostrarAlertaSimple("Exito", "Usuario registrado con exito", Alert.AlertType.INFORMATION);
-                            cerrarVentana();
+                            Stage escenarioRegistro = (Stage) tfContacto.getScene().getWindow();
+                            escenarioRegistro.close();
                         }
                  }else{
                       Utilidades.mostrarAlertaSimple("Error", "El Numero de empleado que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);                   
@@ -89,46 +84,44 @@ public class FXMLRegistraUsuarioController implements Initializable {
         cerrarVentana();
     }
     
-     private boolean validarCaracteres(String cadena){
+    private boolean validarCaracteres(String cadena){
         
         return cadena.matches("-?([a-zA-Z_0-9]*)?");
     }
      
-     private boolean validarCaracteresNombre(String cadena){
+    private boolean validarCaracteresNombre(String cadena){
         return cadena.matches("^[a-zA-Z ]+$");
     }
        
-     private boolean validarCaracteresEnteros(String cadena){
+    private boolean validarCaracteresEnteros(String cadena){
         
         return cadena.matches("\\d+");
     }
      
-     private boolean validarCaracteresContacto(String cadena){
+    private boolean validarCaracteresContacto(String cadena){
         boolean valido;
         
-        if(cadena.endsWith("@uv.com.mx")){
+        if(cadena.endsWith("@uv.mx")){
             valido = true;
        }else{
             valido = false;
         }
         
         return valido;
-     }
+    }
      
-    private void cerrarVentana(){
-               
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación");
-            alert.setHeaderText("¿Desea cancelar el registro?");
+    private void cerrarVentana(){    
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("¿Desea cancelar el registro?");
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                Stage escenarioRegistro = (Stage) tfContacto.getScene().getWindow();
-                escenarioRegistro.close();
-            }else{
-                
-            }
- 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Stage escenarioRegistro = (Stage) tfContacto.getScene().getWindow();
+            escenarioRegistro.close();
+        }else{
+            alert.close();
+        }
    }
     
 }

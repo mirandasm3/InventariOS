@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author miran
+ * @author diana
  */
 public class FXMLRegistroPerifericosController implements Initializable {
 
@@ -107,17 +107,21 @@ public class FXMLRegistroPerifericosController implements Initializable {
         }else {
             PerifericoDAO pDao = new PerifericoDAO();
             try {
-                 
-                ResultadoOperacion resultado = pDao.registrarPeriferico(periferico);
-                if (resultado.isError()) {
-                    Utilidades.mostrarAlertaSimple("Error", "Error en el registro.", Alert.AlertType.ERROR);
-                } else {
-                    listaPerifericos.add(periferico);
-                    Utilidades.mostrarAlertaSimple("Registro exitoso", "Periférico registrado con éxito.", Alert.AlertType.INFORMATION);
-                    tfIdentificador.clear();
-                    tfMarca.clear();
-                    cbTipo.setValue(null);
-                    cbEstado.setValue(null);
+                boolean buscarPeriferico = new PerifericoDAO().buscarPeriferico(identificador);
+                if(buscarPeriferico == false){
+                    ResultadoOperacion resultado = pDao.registrarPeriferico(periferico);
+                    if (resultado.isError()) {
+                        Utilidades.mostrarAlertaSimple("Error", "Error en el registro.", Alert.AlertType.ERROR);
+                    } else {
+                        listaPerifericos.add(periferico);
+                        Utilidades.mostrarAlertaSimple("Registro exitoso", "Periférico registrado con éxito.", Alert.AlertType.INFORMATION);
+                        tfIdentificador.clear();
+                        tfMarca.clear();
+                        cbTipo.setValue(null);
+                        cbEstado.setValue(null);
+                    }
+                }else{
+                    Utilidades.mostrarAlertaSimple("Error", "El identificador ya ha sido registrado en la base de datos.", Alert.AlertType.ERROR);
                 }
             } catch (SQLException ex) {
                 Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);

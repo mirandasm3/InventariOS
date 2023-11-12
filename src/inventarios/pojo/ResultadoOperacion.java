@@ -3,7 +3,7 @@ package inventarios.pojo;
 
 /**
  *
- * @author miran
+ * @author diana
  */
 public class ResultadoOperacion {
 

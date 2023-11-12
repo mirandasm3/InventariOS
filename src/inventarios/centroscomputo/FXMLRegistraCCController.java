@@ -22,7 +22,7 @@ import javafx.scene.control.ButtonType;
 /**
  * FXML Controller class
  *
- * @author LENOVO
+ * @author raudel
  */
 public class FXMLRegistraCCController implements Initializable {
 

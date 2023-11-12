@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author raudel
+ * @author diana
  */
 public class ConexionBD {
     private static String driver = "com.mysql.cj.jdbc.Driver";

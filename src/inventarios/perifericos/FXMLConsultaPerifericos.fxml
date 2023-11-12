@@ -47,5 +47,14 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
+      <Button layoutX="235.0" layoutY="130.0" mnemonicParsing="false" onAction="#consultarPeriferico" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 100; -fx-background-color: #edb855;" textFill="#edb855">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

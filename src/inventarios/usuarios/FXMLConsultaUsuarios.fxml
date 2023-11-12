@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,23 +11,25 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.usuarios.FXMLConsultaUsuariosController">
    <children>
-      <Button fx:id="btnEliminar" layoutX="862.0" layoutY="472.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #EE6060;" text="Eliminar" textFill="WHITE">
+      <Button fx:id="btnEliminar" layoutX="863.0" layoutY="448.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #EE6060;" text="Eliminar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnModificar" layoutX="862.0" layoutY="409.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #2c4961;" text="Modificar" textFill="WHITE">
+      <Button fx:id="btnModificar" layoutX="863.0" layoutY="385.0" mnemonicParsing="false" onAction="#modificarUsuario" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #2c4961;" text="Modificar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="862.0" layoutY="530.0" mnemonicParsing="false" onAction="#volver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE" />
-      <TableView fx:id="tvUsuarios" layoutX="63.0" layoutY="182.0" prefHeight="381.0" prefWidth="758.0">
+      <Button layoutX="863.0" layoutY="506.0" mnemonicParsing="false" onAction="#volver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TableView fx:id="tvUsuarios" layoutX="63.0" layoutY="158.0" prefHeight="381.0" prefWidth="758.0">
          <columns>
-            <TableColumn fx:id="clNombre" prefWidth="179.0" text="Nombre" />
-            <TableColumn fx:id="clNoPersonal" prefWidth="216.0" text="No. de personal" />
-            <TableColumn fx:id="clPassword" prefWidth="186.0" text="Password" />
-            <TableColumn fx:id="clContacto" prefWidth="176.0" text="Contacto" />
+            <TableColumn fx:id="clNombre" prefWidth="285.0" text="Nombre" />
+            <TableColumn fx:id="clNoPersonal" prefWidth="156.0" text="No. de personal" />
+            <TableColumn fx:id="clContacto" prefWidth="316.0" text="Contacto" />
          </columns>
       </TableView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="127.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="1047.0" />
@@ -36,5 +39,14 @@
             <Font name="Franklin Gothic Medium Cond" size="28.0" />
          </font>
       </Text>
+      <Button layoutX="63.0" layoutY="563.0" mnemonicParsing="false" onAction="#llenarTablaUsuarios" prefHeight="46.0" prefWidth="46.0" style="-fx-background-radius: 100; -fx-background-color: #edb855;" textFill="#edb855">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

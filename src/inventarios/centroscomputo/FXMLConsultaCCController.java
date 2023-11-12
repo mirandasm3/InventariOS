@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author LENOVO
+ * @author raudel
  */
 public class FXMLConsultaCCController implements Initializable {
 

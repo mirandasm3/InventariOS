@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.FXMLMenuController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="-8.0" prefHeight="689.0" prefWidth="891.0" styleClass="mainFxmlClass">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#405a40" height="69.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="286.0" />
+            <Text fx:id="txtTitle" fill="WHITE" fontSmoothingType="LCD" layoutY="44.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="InventariOS" textAlignment="CENTER" wrappingWidth="286.0">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="31.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="69.0" layoutX="283.0" stroke="TRANSPARENT" strokeType="INSIDE" width="765.0" />
+            <MenuButton fx:id="btnAdmin" layoutX="848.0" layoutY="5.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="191.0" style="-fx-background-color: #364450;" text="Administrador" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="21.0" />
+               </font>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Salir" />
+               </items>
+            </MenuButton>
+            <ImageView fitHeight="35.0" fitWidth="49.0" layoutX="802.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/uvlogo.png" />
+               </image>
+            </ImageView>
+            <TabPane fx:id="tabpane" layoutY="68.0" prefHeight="620.0" prefWidth="1036.0" side="LEFT" styleClass="style.css" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab fx:id="inventario" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children></AnchorPane>
+                  </content>
+                     <graphic>
+                        <ImageView fitHeight="105.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="-59.0">
+                           <image>
+                              <Image url="@img/inventario.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                </Tab>
+                  <Tab fx:id="consultas" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="24.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="btnConsultarPerifericos" layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarPerifericos" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Periféricos" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnConsultarCC" layoutX="276.0" layoutY="196.0" mnemonicParsing="false" onAction="#clicBtnConsultarCC" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #335871;" text="Centros de cómputo" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnConsultarUsuario" layoutX="33.0" layoutY="196.0" mnemonicParsing="false" onAction="#clicBtnConsultarUsuarios" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Usuarios" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnConsultarSoftware" layoutX="521.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarSoftware" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #4C6C8A;" text="Software" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnConsultarEquipo" layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarEquipo" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Equipo de cómputo" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                              </Button>
+                           </children></AnchorPane>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="77.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-59.0">
+                           <image>
+                              <Image url="@img/consulta.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="centros" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children></AnchorPane>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-59.0">
+                           <image>
+                              <Image url="@img/bitacora.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="nose" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children></AnchorPane>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-59.0">
+                           <image>
+                              <Image url="@img/user1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="nose1" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
+                           <children>
+                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="24.0" />
+                                 </font>
+                              </Text>
+                           </children></AnchorPane>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="41.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="-59.0">
+                           <image>
+                              <Image url="@img/cc.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

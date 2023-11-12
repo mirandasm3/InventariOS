@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,35 +8,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.usuarios.FXMLRegistraUsuarioController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.usuarios.FXMLRegistraUsuarioController">
    <children>
-      <Label layoutX="105.0" layoutY="105.0" text="Nombre">
+      <Button layoutX="321.0" layoutY="333.0" mnemonicParsing="false" onAction="#clicBtnRegistrar" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium Cond" size="12.0" />
-         </font></Label>
-      <Label layoutX="75.0" layoutY="134.0" prefHeight="54.0" prefWidth="93.0" text="Número de personal">
-         <font>
-            <Font name="Franklin Gothic Medium Cond" size="12.0" />
-         </font></Label>
-      <Label layoutX="100.0" layoutY="204.0" text="Password">
-         <font>
-            <Font name="Franklin Gothic Medium Cond" size="12.0" />
-         </font></Label>
-      <Label layoutX="102.0" layoutY="259.0" text="Contacto">
-         <font>
-            <Font name="Franklin Gothic Medium Cond" size="12.0" />
-         </font></Label>
-      <TextField fx:id="tfNombre" layoutX="222.0" layoutY="97.0" />
-      <TextField fx:id="tfNumPersonal" layoutX="223.0" layoutY="148.0" />
-      <TextField fx:id="tfPassword" layoutX="227.0" layoutY="199.0" />
-      <TextField fx:id="tfContacto" layoutX="227.0" layoutY="254.0" promptText="xxxxxxx@uv.com.mx" />
-      <Button layoutX="301.0" layoutY="331.0" mnemonicParsing="false" onAction="#clicBtnRegistrar" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
-         <font>
-            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+            <Font name="Franklin Gothic Demi" size="12.0" />
          </font></Button>
-      <Button layoutX="386.0" layoutY="331.0" mnemonicParsing="false" onAction="#clicBtnCancelar" style="-fx-background-color: #EE6060;" text="Cancelar" textFill="WHITE">
+      <Button layoutX="452.0" layoutY="333.0" mnemonicParsing="false" onAction="#clicBtnCancelar" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: #EE6060;" text="Cancelar" textFill="WHITE">
          <font>
-            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+            <Font name="Franklin Gothic Heavy" size="12.0" />
          </font></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="99.0" layoutY="-3.0" stroke="TRANSPARENT" strokeType="INSIDE" width="605.0" />
+      <GridPane layoutX="44.0" layoutY="128.0" prefHeight="159.0" prefWidth="517.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="177.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="340.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Nombre">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="22.0" />
+               </font>
+            </Label>
+            <Label prefHeight="25.0" prefWidth="171.0" text="Número de personal" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="22.0" />
+               </font>
+            </Label>
+            <Label text="Password" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="22.0" />
+               </font>
+            </Label>
+            <Label text="Contacto" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tfNombre" GridPane.columnIndex="1" />
+            <TextField fx:id="tfNumPersonal" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="tfPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfContacto" promptText="xxxxxxx@uv.mx" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

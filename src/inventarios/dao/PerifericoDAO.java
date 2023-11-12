@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author miran
+ * @author diana
  */
 public class PerifericoDAO {
     
@@ -110,12 +110,14 @@ public class PerifericoDAO {
            
             try {
 
-                String sentencia = "UPDATE periferico set identificador = ?, marca = ?, estado = ? WHERE (idPeriferico = ?)";
+                String sentencia = "UPDATE periferico set identificador = ?, marca = ?, estado = ?, tipo = ? WHERE (idPeriferico = ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1, perifericoNuevo.getIdentificador());
                 prepararSentencia.setString(2, perifericoNuevo.getMarca());
                 prepararSentencia.setString(3, perifericoNuevo.getEstado());
-                prepararSentencia.setInt(4, idPeriferico);
+                prepararSentencia.setString(4, perifericoNuevo.getTipo());
+
+                prepararSentencia.setInt(5, idPeriferico);
 
                 int numeroFilas = prepararSentencia.executeUpdate();
                 if(numeroFilas > 0){
@@ -168,5 +170,30 @@ public class PerifericoDAO {
         }
         return respuesta;           
     }
+        
+        public static boolean buscarPeriferico(String identificador) throws SQLException{
+        Periferico perifericoTemporal = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM periferico WHERE (identificador = ?)";
+                PreparedStatement consultaDB = conexionBD.prepareStatement(consulta);
+                consultaDB.setString(1, identificador);
+                ResultSet resultadoConsulta = consultaDB.executeQuery();
+                perifericoTemporal = new Periferico();                
+                if(resultadoConsulta.next()){
+                    return true;
+                }else{
+                    return false;
+                }
+            } catch (SQLException s) {
+                s.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return false;
+    }
+    
     
 }

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package inventarios.dao;
 
 import java.sql.Connection;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author LENOVO
+ * @author raudel
  */
 public class AdministradorDAO {
     
@@ -117,6 +114,46 @@ public class AdministradorDAO {
             }
         }else{
             respuesta.setMensaje("Por el momento no hay conexión con la base de datos, Intente más tarde.");
+        }
+        return respuesta;           
+    }
+    
+        public static ResultadoOperacion modificarUsuario(int numPersonal, Administrador adminNuevo) throws SQLException{
+        
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        
+        if(conexionBD != null){
+           
+            try {
+
+                String sentencia = "UPDATE administrador set nombre = ?, password = ?, contacto = ? WHERE (numeroPersonal = ?)";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setString(1, adminNuevo.getNombre());
+                prepararSentencia.setString(2, adminNuevo.getPassword());
+                prepararSentencia.setString(3, adminNuevo.getContacto());
+                prepararSentencia.setInt(4, numPersonal);
+
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Administrador modificado con éxito.");
+                }else{
+                    respuesta.setMensaje("No se pudo modificar la información del administrador.");
+                }
+                
+            } catch (SQLException e) {
+                respuesta.setMensaje(e.getMessage());
+                
+            } finally{
+                conexionBD.close();
+            }
+            
+        }else{
+            respuesta.setMensaje("Error en la conexión con la base de datos. Intente de nuevo más tarde.");
         }
         return respuesta;           
     }
