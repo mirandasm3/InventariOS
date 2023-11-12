@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LENOVO/OneDrive/Escritorio/Software/InventarioOS/InventariOS/src/inventarios/modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Escritorio/Software/InventarioOS/InventariOS/src/inventarios/centroscomputo/FXMLConsultaCCController.java</file>
-            <file>file:/C:/Users/LENOVO/OneDrive/Escritorio/Software/InventarioOS/InventariOS/src/inventarios/perifericos/FXMLRegistroPerifericosController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/usuarios/FXMLModificaUsuarioController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/nbproject/jfx-impl.xml</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/FXMLInicioSesionController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/InventariOS.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/FXMLPrincipalController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/modelo/ConexionBD.java</file>
         </group>
     </open-files>
 </project-private>
