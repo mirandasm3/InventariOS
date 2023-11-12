@@ -22,7 +22,10 @@
             <TableColumn fx:id="clEstado" prefWidth="176.0" text="Estado" />
          </columns>
       </TableView>
-      <Button layoutX="855.0" layoutY="548.0" mnemonicParsing="false" onAction="#volver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE" />
+      <Button layoutX="855.0" layoutY="548.0" mnemonicParsing="false" onAction="#volver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <Button layoutX="863.0" layoutY="130.0" mnemonicParsing="false" onAction="#consultarPeriferico" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #364450;" text="Consultar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />

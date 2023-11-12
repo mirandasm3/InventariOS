@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -16,7 +17,7 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#405a40" height="69.0" layoutY="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="286.0" />
             <Text fx:id="txtTitle" fill="WHITE" fontSmoothingType="LCD" layoutY="44.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="InventariOS" textAlignment="CENTER" wrappingWidth="286.0">
                <font>
-                  <Font name="Franklin Gothic Demi Cond" size="31.0" />
+                  <Font name="Franklin Gothic Demi Cond" size="37.0" />
                </font>
             </Text>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="69.0" layoutX="283.0" stroke="TRANSPARENT" strokeType="INSIDE" width="765.0" />
@@ -28,22 +29,46 @@
                   <MenuItem mnemonicParsing="false" onAction="#cerrarSesion" text="Salir" />
                </items>
             </MenuButton>
-            <ImageView fitHeight="35.0" fitWidth="49.0" layoutX="802.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="42.0" fitWidth="34.0" layoutX="808.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/uvlogo.png" />
                </image>
             </ImageView>
             <TabPane fx:id="tabpane" layoutY="68.0" prefHeight="620.0" prefWidth="1036.0" side="LEFT" styleClass="style.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="inventario" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                <Tab style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                              <Text layoutX="33.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventario" wrappingWidth="385.2734375">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="24.0" />
                                  </font>
                               </Text>
+                              <Button layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnRegistrarEquipo" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Registro de equipo de cómputo" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="521.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnRegistrarSoftware" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #4C6C8A;" text="Registro de software" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnRegistrarPerifericos" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Registro de perifericos" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children></AnchorPane>
                   </content>
                      <graphic>
@@ -57,39 +82,38 @@
                         </ImageView>
                      </graphic>
                 </Tab>
-                  <Tab fx:id="consultas" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                  <Tab style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                              <Text layoutX="33.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consultas" wrappingWidth="385.2734375">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="24.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="btnConsultarPerifericos" layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarPerifericos" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Periféricos" textFill="WHITE">
+                              <Button layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarPerifericos" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Periféricos" textFill="WHITE">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="21.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
-                              <Button fx:id="btnConsultarCC" layoutX="276.0" layoutY="196.0" mnemonicParsing="false" onAction="#clicBtnConsultarCC" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #335871;" text="Centros de cómputo" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                              <Button layoutX="521.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarSoftware" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #4C6C8A;" text="Software" textFill="WHITE">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="21.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
-                              <Button fx:id="btnConsultarUsuario" layoutX="33.0" layoutY="196.0" mnemonicParsing="false" onAction="#clicBtnConsultarUsuarios" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Usuarios" textFill="WHITE">
+                              <Button layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarEquipo" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Equipo de cómputo" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="21.0" />
                                  </font>
-                              </Button>
-                              <Button fx:id="btnConsultarSoftware" layoutX="521.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarSoftware" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #4C6C8A;" text="Software" textFill="WHITE">
-                                 <font>
-                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="btnConsultarEquipo" layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarEquipo" prefHeight="99.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Equipo de cómputo" textFill="WHITE">
-                                 <font>
-                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
-                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children></AnchorPane>
                      </content>
@@ -101,15 +125,31 @@
                         </ImageView>
                      </graphic>
                   </Tab>
-                  <Tab fx:id="centros" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                  <Tab style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                              <Text layoutX="33.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bitácoras" wrappingWidth="385.2734375">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="24.0" />
                                  </font>
                               </Text>
+                              <Button layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnRegistrarBitacora" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Registro" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarBitacora" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Consulta" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children></AnchorPane>
                      </content>
                      <graphic>
@@ -120,15 +160,31 @@
                         </ImageView>
                      </graphic>
                   </Tab>
-                  <Tab fx:id="nose" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                  <Tab style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                              <Text layoutX="33.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios" wrappingWidth="385.2734375">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="24.0" />
                                  </font>
                               </Text>
+                              <Button layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarUsuarios" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Consulta" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnRegistrarUsuario" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Registro" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children></AnchorPane>
                      </content>
                      <graphic>
@@ -139,15 +195,31 @@
                         </ImageView>
                      </graphic>
                   </Tab>
-                  <Tab fx:id="nose1" style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
+                  <Tab style="-fx-background-color: #283846; -fx-pref-height: 279; -fx-pref-width: 100;">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="1002.0">
                            <children>
-                              <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="385.2734375">
+                              <Text layoutX="33.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Centros de cómputo" wrappingWidth="385.2734375">
                                  <font>
                                     <Font name="Franklin Gothic Demi Cond" size="24.0" />
                                  </font>
                               </Text>
+                              <Button layoutX="33.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnConsultarCC" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #437393;" text="Consulta" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onAction="#clicBtnRegistrarCC" prefHeight="524.0" prefWidth="217.0" style="-fx-background-color: #3F5475;" text="Registro" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Demi Cond" size="21.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children></AnchorPane>
                      </content>
                      <graphic>
@@ -160,6 +232,11 @@
                   </Tab>
               </tabs>
             </TabPane>
+            <Text fill="WHITE" layoutX="315.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido(a) al sistema de inventarios" wrappingWidth="286.0">
+               <font>
+                  <Font name="Franklin Gothic Demi Cond" size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

@@ -18,7 +18,10 @@
             <TableColumn fx:id="clNumero" prefWidth="417.0" text="Numero" />
          </columns>
       </TableView>
-      <Button layoutX="858.0" layoutY="463.0" mnemonicParsing="false" onAction="#clicBtnVolver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE" />
+      <Button layoutX="858.0" layoutY="463.0" mnemonicParsing="false" onAction="#clicBtnVolver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <Button fx:id="btnModificar" layoutX="858.0" layoutY="350.0" mnemonicParsing="false" onAction="#clicBtnModificarCC" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #2c4961;" text="Modificar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />

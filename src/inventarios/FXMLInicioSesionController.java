@@ -75,7 +75,7 @@ public class FXMLInicioSesionController implements Initializable {
 
         try {
             Utilidades.mostrarAlertaSimple("Bienvenido(a)", "Credenciales correctas, Bienvenido(a) al sistema "+nombre, Alert.AlertType.INFORMATION);
-            Parent vista = FXMLLoader.load(getClass().getResource("FXMLPrincipal.fxml"));
+            Parent vista = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
             Scene escenaPrincipal = new Scene(vista);
             Stage escenarioBase = (Stage) tfUsuario.getScene().getWindow();
             escenarioBase.setTitle("Menú Principal");

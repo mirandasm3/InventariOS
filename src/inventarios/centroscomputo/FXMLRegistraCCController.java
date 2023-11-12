@@ -68,7 +68,8 @@ public class FXMLRegistraCCController implements Initializable {
                     
                     }else{
                         Utilidades.mostrarAlertaSimple("Exito", "Centro de computo registrado con exito", Alert.AlertType.INFORMATION);
-                        cerrarVentana();
+                        Stage escenarioRegistro = (Stage) tfClave.getScene().getWindow();
+                        escenarioRegistro.close(); 
                     }
                  }else{
                     Utilidades.mostrarAlertaSimple("Error", "La clave que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);

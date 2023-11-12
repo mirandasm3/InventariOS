@@ -1,14 +1,18 @@
 
 package inventarios.perifericos;
 
+import inventarios.dao.CentroComputoDAO;
 import inventarios.pojo.Periferico;
 import inventarios.dao.PerifericoDAO;
+import inventarios.pojo.CentroComputo;
 import inventarios.pojo.ResultadoOperacion;
 import inventarios.util.Utilidades;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +38,8 @@ public class FXMLRegistroPerifericosController implements Initializable {
     @FXML
     private ComboBox<String> cbEstado;
     @FXML
+    private ComboBox<String> cbCC;
+    @FXML
     private TextField tfIdentificador;
     @FXML
     private TextField tfMarca;
@@ -47,9 +53,13 @@ public class FXMLRegistroPerifericosController implements Initializable {
     private TableColumn clMarca;
     @FXML
     private TableColumn clEstado;
+    @FXML
+    private TableColumn clCC;
     private ObservableList<String> listaEstado;
     private ObservableList<String> listaTipo;
     private ObservableList<Periferico> listaPerifericos = FXCollections.observableArrayList();
+    private ObservableList<String> listaCC;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,6 +69,7 @@ public class FXMLRegistroPerifericosController implements Initializable {
         clTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         clMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
         clEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        clCC.setCellValueFactory(new PropertyValueFactory<>("idCentroComputo"));
         
         tvPeriferico.setItems(listaPerifericos);
     }
@@ -71,7 +82,6 @@ public class FXMLRegistroPerifericosController implements Initializable {
         estados.add("Aceptable");
         estados.add("Defectuoso");
         estados.add("Obsoleto");
-
         listaEstado = FXCollections.observableArrayList(estados);
         
         cbEstado.setItems(listaEstado);
@@ -84,8 +94,23 @@ public class FXMLRegistroPerifericosController implements Initializable {
         listaTipo = FXCollections.observableArrayList(tipos);
         
         cbTipo.setItems(listaTipo);
+        
+        ArrayList<String> ccs = new ArrayList<String>();
+        ArrayList<CentroComputo> ccConsulta;
+        try {
+            ccConsulta = CentroComputoDAO.consultarCCs();
+
+            for (CentroComputo cc : ccConsulta) {
+                String clavee = cc.getClave();
+                ccs.add(clavee);
+            }
+        } catch (SQLException ex) {
+            Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);
+        }
+        listaCC = FXCollections.observableArrayList(ccs);
+        cbCC.setItems(listaCC);
     }
-  
+    
     @FXML
     private void registrarPeriferico(ActionEvent event) {
         
@@ -95,14 +120,21 @@ public class FXMLRegistroPerifericosController implements Initializable {
         String marca = tfMarca.getText();
         String tipo = cbTipo.getValue();
         String estado = cbEstado.getValue();
+        String claveCC = cbCC.getValue();
         
-        periferico.setIdCentroComputo(1);
+        try {
+            int idCentro = CentroComputoDAO.buscarCC(claveCC).getIdCC();
+            periferico.setIdCentroComputo(idCentro);
+        } catch (SQLException ex) {
+            Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);
+        }
+        
         periferico.setEstado(estado);
         periferico.setIdentificador(identificador);
         periferico.setMarca(marca);
         periferico.setTipo(tipo);
         
-        if((identificador.isEmpty() || marca.isEmpty()) || (tipo == null || estado == null)){
+        if((identificador.isEmpty() || marca.isEmpty()) || (tipo == null || estado == null || claveCC == null)){
             Utilidades.mostrarAlertaSimple("Campos vacíos", "No puede haber campos vacíos.", Alert.AlertType.WARNING);
         }else {
             PerifericoDAO pDao = new PerifericoDAO();
@@ -119,6 +151,7 @@ public class FXMLRegistroPerifericosController implements Initializable {
                         tfMarca.clear();
                         cbTipo.setValue(null);
                         cbEstado.setValue(null);
+                        cbCC.setValue(null);
                     }
                 }else{
                     Utilidades.mostrarAlertaSimple("Error", "El identificador ya ha sido registrado en la base de datos.", Alert.AlertType.ERROR);

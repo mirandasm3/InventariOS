@@ -68,6 +68,7 @@ public class CentroComputoDAO {
                    CentroComputo temp = new CentroComputo();
                    temp.setClave(resultadoConsulta.getString("clave"));
                    temp.setNumero(resultadoConsulta.getInt("numero"));;
+                   temp.setIdCC(resultadoConsulta.getInt("idcentrocomputo"));
 
                    ccsBD.add(temp);
                }
@@ -126,6 +127,7 @@ public class CentroComputoDAO {
                 if(resultadoConsulta.next()){
                     ccTemporal.setClave(resultadoConsulta.getString("clave"));
                     ccTemporal.setNumero(resultadoConsulta.getInt("numero"));
+                    ccTemporal.setIdCC(resultadoConsulta.getInt("idcentrocomputo"));
 
                 }else{
                     ccTemporal.setNumero(-1);

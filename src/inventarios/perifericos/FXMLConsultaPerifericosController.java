@@ -1,7 +1,9 @@
 
 package inventarios.perifericos;
 
+import inventarios.dao.CentroComputoDAO;
 import inventarios.dao.PerifericoDAO;
+import inventarios.pojo.CentroComputo;
 import inventarios.pojo.Periferico;
 import inventarios.pojo.ResultadoOperacion;
 import inventarios.util.Utilidades;
@@ -76,11 +78,19 @@ public class FXMLConsultaPerifericosController implements Initializable {
     }
 
     private void llenarCombos(){
-        ArrayList<String> estados = new ArrayList<String>();
-        estados.add("CC1");
+        ArrayList<String> ccs = new ArrayList<String>();
+        ArrayList<CentroComputo> ccConsulta;
+        try {
+            ccConsulta = CentroComputoDAO.consultarCCs();
 
-        listaCC = FXCollections.observableArrayList(estados);
-        
+            for (CentroComputo cc : ccConsulta) {
+                String clavee = cc.getClave();
+                ccs.add(clavee);
+            }
+        } catch (SQLException ex) {
+            Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);
+        }
+        listaCC = FXCollections.observableArrayList(ccs);
         cbCC.setItems(listaCC);
         
         ArrayList<String> tipos = new ArrayList<String>();
@@ -98,11 +108,12 @@ public class FXMLConsultaPerifericosController implements Initializable {
         String tipo = cbTipo.getValue();
         String cc = cbCC.getValue();
         if(tipo == null || tipo.isEmpty() || cc == null || cc.isEmpty()){
-            Utilidades.mostrarAlertaSimple("Campos vacíos", "Debe seleccionar ambos filtros.", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Campos vacíos", "Debe seleccionar ambos filtros.", Alert.AlertType.WARNING);           
         }else {
             PerifericoDAO pDao = new PerifericoDAO();
             try {
-                List<Periferico> resultados = pDao.consultarPerifericos(1, tipo);
+                int idCentro = CentroComputoDAO.buscarCC(cc).getIdCC();
+                List<Periferico> resultados = pDao.consultarPerifericos(idCentro, tipo);
                 listaPerifericos.clear();
                 if (resultados != null) {
                 listaPerifericos.addAll(resultados);

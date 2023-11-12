@@ -9,16 +9,31 @@ public class CentroComputo {
     
     String clave;
     int numero;
+    int idCC;
     
     public CentroComputo(){
         
     }
-    
-    public CentroComputo(String clave, int numero){
+
+    public CentroComputo(String clave, int numero) {
         this.clave = clave;
         this.numero = numero;
     }
     
+    public CentroComputo(String clave, int numero, int idCC){
+        this.clave = clave;
+        this.numero = numero;
+        this.idCC = idCC;
+    }
+
+    public int getIdCC() {
+        return idCC;
+    }
+
+    public void setIdCC(int idCC) {
+        this.idCC = idCC;
+    }
+
     public String getClave() {
         return clave;
     }

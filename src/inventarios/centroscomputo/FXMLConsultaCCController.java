@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package inventarios.centroscomputo;
 
 import inventarios.dao.CentroComputoDAO;
@@ -47,9 +44,6 @@ public class FXMLConsultaCCController implements Initializable {
     
     private ObservableList<CentroComputo> listaCCs = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         clClave.setCellValueFactory(new PropertyValueFactory<>("clave"));
@@ -88,7 +82,8 @@ public class FXMLConsultaCCController implements Initializable {
                 try {
                     resultado = ccDao.eliminarCC(ccSeleccionado.getClave());
                     if (resultado.isError()) {
-                        Utilidades.mostrarAlertaSimple("Error", "Error en la eliminación.", Alert.AlertType.ERROR);
+                        Utilidades.mostrarAlertaSimple("Error", "No es posible eliminar el centro de cómputo, ya que "
+                                + "existen registros relacionados que dependen de él.", Alert.AlertType.ERROR);
                     } else {
                         Utilidades.mostrarAlertaSimple("Eliminación exitosa", "Centro de cómputo eliminado con éxito.", Alert.AlertType.INFORMATION);
                         listaCCs.remove(ccSeleccionado);
