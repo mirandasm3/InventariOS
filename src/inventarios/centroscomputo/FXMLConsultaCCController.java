@@ -4,7 +4,6 @@ package inventarios.centroscomputo;
 import inventarios.dao.CentroComputoDAO;
 import inventarios.pojo.CentroComputo;
 import inventarios.pojo.ResultadoOperacion;
-import inventarios.usuarios.FXMLModificaUsuarioController;
 import inventarios.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;

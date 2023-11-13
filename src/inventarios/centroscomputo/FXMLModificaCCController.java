@@ -56,11 +56,11 @@ public class FXMLModificaCCController implements Initializable {
         
         if(clave.isEmpty() || validarCaracteres(clave) == false){
             
-            Utilidades.mostrarAlertaSimple("Error", "No puede haber campos vacíos o caracteres inválidos", Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error", "No puede haber campos vacíos o caracteres inválidos.", Alert.AlertType.ERROR);
             
         }else if(numero.isEmpty() || validarCaracteresEnteros(numero) == false){
             
-            Utilidades.mostrarAlertaSimple("Error", "No puede haber campos vacíos o caracteres inválidos", Alert.AlertType.ERROR);
+            Utilidades.mostrarAlertaSimple("Error", "No puede haber campos vacíos o caracteres inválidos.", Alert.AlertType.ERROR);
            
         }else{
             
@@ -78,16 +78,17 @@ public class FXMLModificaCCController implements Initializable {
                         Utilidades.mostrarAlertaSimple("Error", resultado.getMensaje(), Alert.AlertType.ERROR);
                     
                     }else{
-                        Utilidades.mostrarAlertaSimple("Exito", "Centro de computo registrado con exito", Alert.AlertType.INFORMATION);
+                       Utilidades.mostrarAlertaSimple("Actualización exitosa", "Centro de cómputo actualizado con éxito.\n"+" Actualice la tabla para"
+                            + "visualizar los cambios.", Alert.AlertType.INFORMATION);
                         Stage escenarioRegistro = (Stage) tfClave.getScene().getWindow();
                         escenarioRegistro.close(); 
                     }
                 }else{
-                    Utilidades.mostrarAlertaSimple("Error", "La clave que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);
+                    Utilidades.mostrarAlertaSimple("Error", "La clave que intenta registrar ya se encuentra en la base de datos.", Alert.AlertType.ERROR);
                 }
                     
                 }catch(SQLException e){
-                    Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde", Alert.AlertType.ERROR);
+                    Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);
                 }
         }
     }
