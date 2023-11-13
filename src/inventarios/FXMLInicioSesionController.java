@@ -1,10 +1,15 @@
 
 package inventarios;
 
+import inventarios.dao.AdministradorDAO;
+import inventarios.pojo.Administrador;
 import inventarios.util.Utilidades;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +46,7 @@ public class FXMLInicioSesionController implements Initializable {
     private void btnIniciarSesion(ActionEvent event) {
         String usuario = tfUsuario.getText();
         String password = pfPassword.getText();
+        int noPersonal =  Integer.parseInt(usuario);
         boolean valido = true;
         lbUsuarioError.setText("");
         lbPasswordError.setText("");
@@ -53,21 +59,26 @@ public class FXMLInicioSesionController implements Initializable {
             lbPasswordError.setText("Contraseña es requerida.");
         }
         if(valido){
-            verificarCredencialesUsuario(usuario, password);
+            verificarCredencialesUsuario(noPersonal, password);
         }
     }
     
-    private void verificarCredencialesUsuario(String noPersonal, String password){
+    private void verificarCredencialesUsuario(int noPersonal, String password){
         try {
-            
-            if(noPersonal.contentEquals("1407")){
-               irPantallaPrincipal("Diana");
+            AdministradorDAO aDao = new AdministradorDAO();
+            Administrador adminInicio = aDao.buscarUsuarioInicio(noPersonal, password);
+            int usuarioBD = adminInicio.getNumeroPersonal();
+            String passwordBD = adminInicio.getPassword();
+            if(noPersonal == usuarioBD && password.equals(passwordBD)){
+               irPantallaPrincipal(adminInicio.getNombre());
             } else{
                 Utilidades.mostrarAlertaSimple("Credenciales incorrectas", "El número de personal y/o contraseña"
-                        + " es incorrecto, favor de verificar.", Alert.AlertType.WARNING);
+                        + " son incorrectos, favor de verificar.", Alert.AlertType.WARNING);
             }
         } catch (NullPointerException e){
            Utilidades.mostrarAlertaSimple("Error de conexión", e.getMessage(), Alert.AlertType.ERROR);
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -85,10 +96,6 @@ public class FXMLInicioSesionController implements Initializable {
             ex.printStackTrace();
         }
         
-    }
-
-    private void AND(boolean contentEquals) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
     

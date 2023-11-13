@@ -186,4 +186,33 @@ public class AdministradorDAO {
         return usuarioTemporal;
     }
     
+        public static Administrador buscarUsuarioInicio(int numeroPersonal, String password) throws SQLException{
+        Administrador usuarioTemporal = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM administrador WHERE numeroPersonal = ? AND password = ?";
+                PreparedStatement consultaDB = conexionBD.prepareStatement(consulta);
+                consultaDB.setInt(1, numeroPersonal);
+                consultaDB.setString(2, password);
+                ResultSet resultadoConsulta = consultaDB.executeQuery();
+                usuarioTemporal = new Administrador();                
+                if(resultadoConsulta.next()){
+                    usuarioTemporal.setNombre(resultadoConsulta.getString("nombre"));
+                    usuarioTemporal.setNumeroPersonal(resultadoConsulta.getInt("numeroPersonal"));
+                    usuarioTemporal.setPassword(resultadoConsulta.getString("password"));
+                    usuarioTemporal.setContacto(resultadoConsulta.getString("contacto"));
+
+                }else{
+                    usuarioTemporal.setNumeroPersonal(-1);
+                }
+            } catch (SQLException s) {
+                s.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return usuarioTemporal;
+    }
+    
 }

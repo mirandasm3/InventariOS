@@ -115,7 +115,7 @@ public class FXMLConsultaCCController implements Initializable {
                         tvCC.refresh();
                     }
                 } catch (SQLException ex) {
-                    Utilidades.mostrarAlertaSimple("Error", "No se pudo eliminar el registro de usuario.", Alert.AlertType.ERROR);
+                    Utilidades.mostrarAlertaSimple("Error", "No se pudo eliminar el registro de CC.", Alert.AlertType.ERROR);
                 }
             }else{
                 alert.close();

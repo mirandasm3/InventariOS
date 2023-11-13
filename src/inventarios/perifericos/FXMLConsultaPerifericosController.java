@@ -160,7 +160,7 @@ public class FXMLConsultaPerifericosController implements Initializable {
     private void eliminarPeriferico(ActionEvent event) {
         Periferico perifericoSeleccionado = tvPeriferico.getSelectionModel().getSelectedItem();
         if (perifericoSeleccionado == null) {
-            Utilidades.mostrarAlertaSimple("Falta selección", "Debe seleccionar un registro de la tabla", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Falta selección", "Debe seleccionar un registro de la tabla.", Alert.AlertType.WARNING);
         } else {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmación de eliminación");
