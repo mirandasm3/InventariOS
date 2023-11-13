@@ -62,15 +62,15 @@ public class FXMLRegistraUsuarioController implements Initializable {
 
 
                         if(AdministradorDAO.registrarUsuario(administrador) == false){
-                            Utilidades.mostrarAlertaSimple("Error", "No se ha podido registrar el Usuario", Alert.AlertType.ERROR);
+                            Utilidades.mostrarAlertaSimple("Error", "No se ha podido registrar el usuario.", Alert.AlertType.ERROR);
 
                         }else{
-                            Utilidades.mostrarAlertaSimple("Exito", "Usuario registrado con exito", Alert.AlertType.INFORMATION);
+                            Utilidades.mostrarAlertaSimple("Exito", "Usuario registrado con éxito.", Alert.AlertType.INFORMATION);
                             Stage escenarioRegistro = (Stage) tfContacto.getScene().getWindow();
                             escenarioRegistro.close();
                         }
                  }else{
-                      Utilidades.mostrarAlertaSimple("Error", "El Numero de empleado que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);                   
+                      Utilidades.mostrarAlertaSimple("Error", "El número de empleado que intenta registrar, ya se encuentra en la base de datos", Alert.AlertType.ERROR);                   
                  }
                     
                 }catch(SQLException e){
