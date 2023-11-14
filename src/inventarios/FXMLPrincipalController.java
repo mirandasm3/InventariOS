@@ -89,7 +89,19 @@ public class FXMLPrincipalController implements Initializable {
 
     @FXML
     private void clicBtnBitacoras(ActionEvent event) {
-    }
+      try {
+        Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLBitacora.fxml"));
+        Scene escenaAdmin = new Scene(vista);
+             Stage escenarioNuevo = new Stage();
+             escenarioNuevo.setTitle("Bitácoras");
+             escenarioNuevo.setScene(escenaAdmin);
+             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+             escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
+      }
+    
 
     @FXML
     private void clicBtnUsuarios(ActionEvent event) {

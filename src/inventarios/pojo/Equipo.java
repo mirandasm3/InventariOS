@@ -4,10 +4,7 @@
  */
 package inventarios.pojo;
 
-/**
- *
- * @author alesi
- */
+
 public class Equipo {
     private int idEquipoComputo;
     private String identificador;
