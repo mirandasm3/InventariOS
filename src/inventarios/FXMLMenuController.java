@@ -154,13 +154,34 @@ public class FXMLMenuController implements Initializable {
     }
 
     @FXML
-    private void clicBtnRegistrarBitacora(ActionEvent event) {
-        
+     private void clicBtnBitacoras(ActionEvent event) {
+       try {
+         Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLCrearBitacora.fxml"));
+         Scene escenaAdmin = new Scene(vista);
+              Stage escenarioNuevo = new Stage();
+              escenarioNuevo.setTitle("Bitácoras");
+              escenarioNuevo.setScene(escenaAdmin);
+              escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+              escenarioNuevo.showAndWait();
+         }catch(IOException io){
+             Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+         }
     }
-
+     
+     
     @FXML
     private void clicBtnConsultarBitacora(ActionEvent event) {
-        
+      try {
+       Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLConsultarBitacora.fxml"));
+       Scene escenaAdmin = new Scene(vista);
+            Stage escenarioNuevo = new Stage();
+            escenarioNuevo.setTitle("Bitácoras");
+            escenarioNuevo.setScene(escenaAdmin);
+            escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+            escenarioNuevo.showAndWait();
+       }catch(IOException io){
+           Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+       }
     }
     
 }
