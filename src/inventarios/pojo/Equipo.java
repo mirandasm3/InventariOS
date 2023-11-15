@@ -16,12 +16,12 @@ public class Equipo {
     private String espacioAlmacenamiento;
     private String ubicacionFisica;
     private String sistemaOperativo;
-    private int nombreCentroComputo;
+    private int idCentroComputo;
 
     public Equipo() {
     }
 
-    public Equipo(int idEquipoComputo, String identificador, String procesador, String memoriaRAM, int memoriaRAMCantidad, String tarjetaGrafica, String tipoAlmacenamiento, String espacioAlmacenamiento, String ubicacionFisica, String sistemaOperativo, int nombreCentroComputo) {
+    public Equipo(int idEquipoComputo, String identificador, String procesador, String memoriaRAM, int memoriaRAMCantidad, String tarjetaGrafica, String tipoAlmacenamiento, String espacioAlmacenamiento, String ubicacionFisica, String sistemaOperativo, int idCentroComputo) {
         this.idEquipoComputo = idEquipoComputo;
         this.identificador = identificador;
         this.procesador = procesador;
@@ -32,7 +32,7 @@ public class Equipo {
         this.espacioAlmacenamiento = espacioAlmacenamiento;
         this.ubicacionFisica = ubicacionFisica;
         this.sistemaOperativo = sistemaOperativo;
-        this.nombreCentroComputo = nombreCentroComputo;
+        this.idCentroComputo = idCentroComputo;
     }
 
     public int getIdEquipoComputo() {
@@ -115,16 +115,16 @@ public class Equipo {
         this.sistemaOperativo = sistemaOperativo;
     }
 
-    public int getNombreCentroComputo() {
-        return nombreCentroComputo;
+    public int getIdCentroComputo() {
+        return idCentroComputo;
     }
 
-    public void setNombreCentroComputo(int nombreCentroComputo) {
-        this.nombreCentroComputo = nombreCentroComputo;
+    public void setIdCentroComputo(int nombreCentroComputo) {
+        this.idCentroComputo = nombreCentroComputo;
     }
 
     @Override
     public String toString() {
-        return "Equipo{" + "idEquipoComputo=" + idEquipoComputo + ", identificador=" + identificador + ", procesador=" + procesador + ", memoriaRAM=" + memoriaRAM + ", memoriaRAMCantidad=" + memoriaRAMCantidad + ", tarjetaGrafica=" + tarjetaGrafica + ", tipoAlmacenamiento=" + tipoAlmacenamiento + ", espacioAlmacenamiento=" + espacioAlmacenamiento + ", ubicacionFisica=" + ubicacionFisica + ", sistemaOperativo=" + sistemaOperativo + ", nombreCentroComputo=" + nombreCentroComputo + '}';
+        return "Equipo{" + "idEquipoComputo=" + idEquipoComputo + ", identificador=" + identificador + ", procesador=" + procesador + ", memoriaRAM=" + memoriaRAM + ", memoriaRAMCantidad=" + memoriaRAMCantidad + ", tarjetaGrafica=" + tarjetaGrafica + ", tipoAlmacenamiento=" + tipoAlmacenamiento + ", espacioAlmacenamiento=" + espacioAlmacenamiento + ", ubicacionFisica=" + ubicacionFisica + ", sistemaOperativo=" + sistemaOperativo + ", idCentroComputo=" + idCentroComputo + '}';
     }
 }

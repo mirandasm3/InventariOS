@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="686.0" prefWidth="1036.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="inventarios.equipocomputo.FXMLConsultaEquiposComputoController">
+    <children>
+      <ComboBox fx:id="cbCC" layoutX="68.0" layoutY="70.0" prefHeight="31.0" prefWidth="189.0" promptText="Centro de cómputo" />
+      <Button fx:id="btnVolver" layoutX="68.0" layoutY="537.0" mnemonicParsing="false" onAction="#volver" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnConsultar" layoutX="801.0" layoutY="70.0" mnemonicParsing="false" onAction="#consultarEquipos" style="-fx-background-color: #364450;" text="Consultar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <TableView fx:id="tvEquiposComputo" layoutX="14.0" layoutY="178.0" prefHeight="295.0" prefWidth="900.0">
+        <columns>
+          <TableColumn fx:id="clIdentificador" prefWidth="110.0" text="Identificador" />
+          <TableColumn fx:id="clProcesador" prefWidth="116.0" text="Procesador" />
+            <TableColumn fx:id="clMemoriaRAM" prefWidth="118.0" text="Memoria RAM" />
+            <TableColumn fx:id="clCantidadRAM" prefWidth="112.0" text="Cantidad RAM" />
+            <TableColumn fx:id="clAlmacenamiento" prefWidth="136.0" text="Almacenamiento" />
+            <TableColumn fx:id="clEspacio" prefWidth="67.0" text="Espacio" />
+            <TableColumn fx:id="clUbicacion" prefWidth="102.0" text="Ubicación" />
+            <TableColumn fx:id="clSistemaOperativo" prefWidth="138.0" text="Sistema Operativo" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnModificar" layoutX="535.0" layoutY="537.0" mnemonicParsing="false" onAction="#modificarEquipo" style="-fx-background-color: #2c4961;" text="Modificar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminar" layoutX="677.0" layoutY="537.0" mnemonicParsing="false" onAction="#eliminarEquipo" style="-fx-background-color: #EE6060;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
