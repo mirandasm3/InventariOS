@@ -79,11 +79,11 @@ public class FXMLConsultaEquiposComputoController implements Initializable {
         clIdentificador.setCellValueFactory(new PropertyValueFactory<>("identificador"));
         clProcesador.setCellValueFactory(new PropertyValueFactory<>("procesador"));
         clMemoriaRAM.setCellValueFactory(new PropertyValueFactory<>("memoriaRAM"));
-        clCantidadRAM.setCellValueFactory(new PropertyValueFactory<>("memoriaRAMcantidad"));
-        clAlmacenamiento.setCellValueFactory(new PropertyValueFactory<>("tipoalmacenamiento"));
-        clEspacio.setCellValueFactory(new PropertyValueFactory<>("espacioalmacenamiento"));
-        clUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacionfisica"));
-        clSistemaOperativo.setCellValueFactory(new PropertyValueFactory<>("sistemaoperativo"));
+        clCantidadRAM.setCellValueFactory(new PropertyValueFactory<>("memoriaRAMCantidad"));
+        clAlmacenamiento.setCellValueFactory(new PropertyValueFactory<>("tipoAlmacenamiento"));
+        clEspacio.setCellValueFactory(new PropertyValueFactory<>("espacioAlmacenamiento"));
+        clUbicacion.setCellValueFactory(new PropertyValueFactory<>("ubicacionFisica"));
+        clSistemaOperativo.setCellValueFactory(new PropertyValueFactory<>("sistemaOperativo"));
         
         tvEquiposComputo.setItems(listaEquipos);
     }

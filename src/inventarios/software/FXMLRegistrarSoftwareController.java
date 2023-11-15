@@ -123,7 +123,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
     private void btnCancelar(ActionEvent event) {
       Alert alert = new Alert (Alert.AlertType.CONFIRMATION);
       alert.setTitle("Confirmación");
-      alert.setHeaderText("¿Desea cacnelar la operación?");
+      alert.setHeaderText("¿Desea cancelar la operación?");
       
       Optional<ButtonType> result = alert.showAndWait();
        if(result.get() == ButtonType.OK){

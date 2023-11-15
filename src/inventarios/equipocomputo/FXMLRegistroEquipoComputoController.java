@@ -89,16 +89,9 @@ public class FXMLRegistroEquipoComputoController implements Initializable {
                     Utilidades.mostrarAlertaSimple("Error", "Error en el registro.", Alert.AlertType.ERROR);
                 }else{
                     listaEquipos.add(equipoComputo);
-                    Utilidades.mostrarAlertaSimple("Registro exitoso", "Equipo de cómputo registrado con éxito", Alert.AlertType.CONFIRMATION);
-                    tfIdentificador.clear();
-                    tfMemoriaRam.clear();
-                    tfMemoriaRamCantidad.clear();
-                    tfProcesador.clear();
-                    tfTarjetaGrafica.clear();
-                    tfTipoAlmacenamiento.clear();
-                    tfEspacioAlmacenamiento.clear();
-                    tfUbicacionFisica.clear();
-                    tfSistemaOperativo.clear();
+                    Utilidades.mostrarAlertaSimple("Registro exitoso", "Equipo de cómputo registrado con éxito", Alert.AlertType.INFORMATION);
+                    Stage stage = (Stage) tfEspacioAlmacenamiento.getScene().getWindow();
+                    stage.close();
                 }
             } catch (SQLException e) {
                 Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);

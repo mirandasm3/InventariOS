@@ -89,7 +89,7 @@ public class FXMLModificaEquipoComputoController implements Initializable {
                 if(resultado.isError()){
                     Utilidades.mostrarAlertaSimple("ERROR", "Error en la actualización", Alert.AlertType.ERROR);
                 }else{
-                   Utilidades.mostrarAlertaSimple("Actualización exitosa", "Equipo de cómputo actualizado con éxito.", Alert.AlertType.INFORMATION);
+                   Utilidades.mostrarAlertaSimple("Actualización exitosa", "Equipo de cómputo actualizado con éxito. Actualice la tabla para visualizar los cambios.", Alert.AlertType.INFORMATION);
                     Stage stage = (Stage) tfEspacioAlmacenamiento.getScene().getWindow();
                     stage.close(); 
                 }

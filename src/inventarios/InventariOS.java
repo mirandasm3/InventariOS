@@ -15,7 +15,7 @@ public class InventariOS extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLInicioSesion.fxml"));
         
         Scene scene = new Scene(root);
         
