@@ -58,7 +58,6 @@ public class FXMLRegistroEquipoComputoController implements Initializable {
         String identificador = tfIdentificador.getText();
         String memoriaRam = tfMemoriaRam.getText();
         String cantidadRam = tfMemoriaRamCantidad.getText();
-        int cantidadRamInt = Integer.parseInt(cantidadRam);
         String procesador = tfProcesador.getText();
         String tarjetaGrafica = tfTarjetaGrafica.getText();
         String tipoAlmacenamiento = tfTipoAlmacenamiento.getText();
@@ -66,23 +65,26 @@ public class FXMLRegistroEquipoComputoController implements Initializable {
         String ubicacionFisica = tfUbicacionFisica.getText();
         String sistemaOperativo = tfSistemaOperativo.getText();
         
-        equipoComputo.setIdCentroComputo(1);
-        equipoComputo.setIdentificador(identificador);
-        equipoComputo.setMemoriaRAM(memoriaRam);
-        equipoComputo.setMemoriaRAMCantidad(cantidadRamInt);
-        equipoComputo.setProcesador(procesador);
-        equipoComputo.setTarjetaGrafica(tarjetaGrafica);
-        equipoComputo.setTipoAlmacenamiento(tipoAlmacenamiento);
-        equipoComputo.setEspacioAlmacenamiento(espacioAlmacenamiento);
-        equipoComputo.setUbicacionFisica(ubicacionFisica);
-        equipoComputo.setSistemaOperativo(sistemaOperativo);
+        
+
         
         if(identificador.isEmpty() || memoriaRam.isEmpty() || procesador.isEmpty() || 
                 tarjetaGrafica.isEmpty() || tipoAlmacenamiento.isEmpty() || espacioAlmacenamiento.isEmpty() || 
-                ubicacionFisica.isEmpty() || sistemaOperativo.isEmpty()){
+                ubicacionFisica.isEmpty() || sistemaOperativo.isEmpty() || cantidadRam.isEmpty()){
             Utilidades.mostrarAlertaSimple("ERROR", "No puede haber campos vacíos", Alert.AlertType.ERROR);
         }else{
             EquipoDAO eDao = new EquipoDAO();
+                int cantidadRamInt = Integer.parseInt(cantidadRam);
+                equipoComputo.setIdCentroComputo(1);
+                equipoComputo.setIdentificador(identificador);
+                equipoComputo.setMemoriaRAM(memoriaRam);
+                equipoComputo.setMemoriaRAMCantidad(cantidadRamInt);
+                equipoComputo.setProcesador(procesador);
+                equipoComputo.setTarjetaGrafica(tarjetaGrafica);
+                equipoComputo.setTipoAlmacenamiento(tipoAlmacenamiento);
+                equipoComputo.setEspacioAlmacenamiento(espacioAlmacenamiento);
+                equipoComputo.setUbicacionFisica(ubicacionFisica);
+                equipoComputo.setSistemaOperativo(sistemaOperativo);
             try{               
                 ResultadoOperacion respuesta = eDao.registrarEquipoComputo(equipoComputo);
                 if(respuesta.isError()){
