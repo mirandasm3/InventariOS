@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlinventario.controller.FXMLConsultaSoftwareController">
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLConsultaSoftwareController">
    <children>
       <TableView fx:id="tvSoftware" layoutX="22.0" layoutY="115.0" prefHeight="354.0" prefWidth="890.0">
         <columns>
@@ -23,15 +23,14 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Button layoutX="773.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnConsultar" text="Consultar" />
-      <Button layoutX="850.0" layoutY="484.0" mnemonicParsing="false" onAction="#btnRegistrar" text="Registrar" />
-      <Button layoutX="698.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnModificar" text="Modificar" />
+      <Button layoutX="845.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnConsultar" text="Consultar" />
+      <Button layoutX="761.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnModificar" text="Modificar" />
       <RadioButton fx:id="tbNombre" layoutX="741.0" layoutY="32.0" mnemonicParsing="false" text="Por nombre">
          <toggleGroup>
             <ToggleGroup fx:id="tgFiltroBusqueda" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="tbIdentificadorEquipo" layoutX="741.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="171.0" text="Por identificador de equipo" toggleGroup="$tgFiltroBusqueda" wrapText="true" />
-      <Button layoutX="629.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnEliminar" text="Eliminar" />
+      <Button layoutX="683.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnEliminar" text="Eliminar" />
    </children>
 </AnchorPane>

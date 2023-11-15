@@ -14,14 +14,14 @@ public class Equipo {
     private String tarjetaGrafica;
     private String tipoAlmacenamiento;
     private String espacioAlmacenamiento;
-    private int ubicacionFisica;
+    private String ubicacionFisica;
     private String sistemaOperativo;
     private int nombreCentroComputo;
 
     public Equipo() {
     }
 
-    public Equipo(int idEquipoComputo, String identificador, String procesador, String memoriaRAM, int memoriaRAMCantidad, String tarjetaGrafica, String tipoAlmacenamiento, String espacioAlmacenamiento, int ubicacionFisica, String sistemaOperativo, int nombreCentroComputo) {
+    public Equipo(int idEquipoComputo, String identificador, String procesador, String memoriaRAM, int memoriaRAMCantidad, String tarjetaGrafica, String tipoAlmacenamiento, String espacioAlmacenamiento, String ubicacionFisica, String sistemaOperativo, int nombreCentroComputo) {
         this.idEquipoComputo = idEquipoComputo;
         this.identificador = identificador;
         this.procesador = procesador;
@@ -99,11 +99,11 @@ public class Equipo {
         this.espacioAlmacenamiento = espacioAlmacenamiento;
     }
 
-    public int getUbicacionFisica() {
+    public String getUbicacionFisica() {
         return ubicacionFisica;
     }
 
-    public void setUbicacionFisica(int ubicacionFisica) {
+    public void setUbicacionFisica(String ubicacionFisica) {
         this.ubicacionFisica = ubicacionFisica;
     }
 
@@ -123,5 +123,8 @@ public class Equipo {
         this.nombreCentroComputo = nombreCentroComputo;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Equipo{" + "idEquipoComputo=" + idEquipoComputo + ", identificador=" + identificador + ", procesador=" + procesador + ", memoriaRAM=" + memoriaRAM + ", memoriaRAMCantidad=" + memoriaRAMCantidad + ", tarjetaGrafica=" + tarjetaGrafica + ", tipoAlmacenamiento=" + tipoAlmacenamiento + ", espacioAlmacenamiento=" + espacioAlmacenamiento + ", ubicacionFisica=" + ubicacionFisica + ", sistemaOperativo=" + sistemaOperativo + ", nombreCentroComputo=" + nombreCentroComputo + '}';
+    }
 }

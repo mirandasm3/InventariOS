@@ -26,7 +26,7 @@ public class EquipoDAO {
             try {
                 String consulta = "SELECT idequipocomputo, centrocomputo.numero, identificador, "
                         + "procesador, memoriaRAM, memoriaRAMcantidad, tarjetagrafica, tipoalmacenamiento,"
-                        + " espacioalmacenamiento, ubicacionfisica, sistemaoperativo "
+                        + " espacioalmacenamiento, ubicacionFisica, sistemaoperativo "
                         + "FROM equipocomputo "
                         + "INNER JOIN centrocomputo "
                         + "ON equipocomputo.centrocomputo_idcentrocomputo = centrocomputo.idcentrocomputo; "; 
@@ -45,7 +45,7 @@ public class EquipoDAO {
                     equipo.setTarjetaGrafica(resultado.getString("tarjetagrafica"));
                     equipo.setTipoAlmacenamiento(resultado.getString("tipoalmacenamiento"));
                     equipo.setEspacioAlmacenamiento(resultado.getString("espacioalmacenamiento"));
-                    equipo.setUbicacionFisica(resultado.getInt("ubicacionfisica"));
+                    equipo.setUbicacionFisica(resultado.getString("ubicacionFisica"));
                     equipo.setSistemaOperativo(resultado.getString("sistemaoperativo"));
                     
                     equipoConsulta.add(equipo);

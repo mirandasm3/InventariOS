@@ -104,8 +104,14 @@ public class FXMLRegistrarSoftwareController implements Initializable {
                 if(SingletonSoftware.getInstance().esEdicion){
                     actualizarSoftware(softwareActivo);
                 }else{
+                    int idEquipoSeleccionado = equipoSeleccionado.getIdEquipoComputo();
                     registrarSoftware(softwareActivo);
-                    Utilidades.mostrarAlertaSimple("Registro", "Registrado", Alert.AlertType.CONFIRMATION);
+                    
+                    
+                    
+                    //asignarSoftwareEquipo(int idSoftware, int idEquipoSeleccionado);
+                    Utilidades.mostrarAlertaSimple("Registro", "Registrado", Alert.AlertType.INFORMATION);
+                    regresarPantalla();
                 }
             }
         }else{

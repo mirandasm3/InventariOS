@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlinventario.controller.FXMLRegistrarSoftwareController">
+<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLRegistrarSoftwareController">
    <children>
       <Label layoutX="17.0" layoutY="64.0" text="Nombre">
          <font>

@@ -17,8 +17,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -29,12 +32,20 @@ public class FXMLConsultarBitacoraController implements Initializable {
 
   public TableView tablaBitacora;
   private BitacoraRespuesta bitacoraRespuesta;
+    @FXML
+    private TableColumn<?, ?> columnaFecha;
+    @FXML
+    private TableColumn<?, ?> columnaDescripcion;
+    @FXML
+    private TableColumn<?, ?> columnaIdEc;
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     tablaBitacora.setItems(obtenerBitacora());
   }
 
+    @FXML
   public void Eliminar(ActionEvent actionEvent) {
+      
   }
 
   public ObservableList<Bitacora> obtenerBitacora() {
@@ -46,6 +57,12 @@ public class FXMLConsultarBitacoraController implements Initializable {
     }
     return bitacoraObservableList;
   }
+
+    @FXML
+    private void clicVolver(ActionEvent event) {
+        Stage stage = (Stage) tablaBitacora.getScene().getWindow();
+        stage.close();
+    }
 
 
 }

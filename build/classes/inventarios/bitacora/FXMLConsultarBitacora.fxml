@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="538.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.bitacora.FXMLConsultarBitacoraController">
-   <AnchorPane prefHeight="568.0" prefWidth="568.0">
-      <children>
-
-         <TableView fx:id="tablaBitacora" layoutX="26.0" layoutY="95.0" prefHeight="358.0" prefWidth="496.0" VBox.vgrow="ALWAYS">
-            <columns>
-               <TableColumn fx:id="columnaFecha" prefWidth="229.99998474121094" text="Fecha">
-                  <cellValueFactory>
-                     <javafx.scene.control.cell.PropertyValueFactory property="fecha" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn fx:id="columnaDescripcion" prefWidth="266.0" text="Descripción">
-                  <cellValueFactory>
-                     <javafx.scene.control.cell.PropertyValueFactory property="descripcion" />
-                  </cellValueFactory>
-               </TableColumn>
-               <TableColumn fx:id="columnaIdEc" prefWidth="266.0" text="Equipo Computo">
-                  <cellValueFactory>
-                     <javafx.scene.control.cell.PropertyValueFactory property="idEquipoDeComputo" />
-                  </cellValueFactory>
-               </TableColumn>
-
-            </columns>
-         </TableView>
-         <ButtonBar layoutX="322.0" layoutY="46.0" prefHeight="40.0" prefWidth="200.0">
-            <buttons>
-               <Button onAction="#Eliminar" text="Eliminar" />
-            </buttons>
-         </ButtonBar>
-         <Button layoutX="470.0" layoutY="471.0" mnemonicParsing="false" text="Regresar" />
-         <Label layoutX="26.0" layoutY="28.0" text="Consultar Bitacoras" />
-      </children>
-   </AnchorPane>
+<VBox prefHeight="538.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.bitacora.FXMLConsultarBitacoraController">
+   <children>
+      <AnchorPane prefHeight="568.0" prefWidth="568.0">
+         <children>
+   
+            <TableView fx:id="tablaBitacora" layoutX="26.0" layoutY="95.0" prefHeight="358.0" prefWidth="496.0" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="columnaFecha" prefWidth="229.99998474121094" text="Fecha">
+                     <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="fecha" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="columnaDescripcion" prefWidth="266.0" text="Descripción">
+                     <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="descripcion" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="columnaIdEc" prefWidth="266.0" text="Equipo Computo">
+                     <cellValueFactory>
+                        <javafx.scene.control.cell.PropertyValueFactory property="idEquipoDeComputo" />
+                     </cellValueFactory>
+                  </TableColumn>
+   
+               </columns>
+            </TableView>
+            <ButtonBar layoutX="322.0" layoutY="46.0" prefHeight="40.0" prefWidth="200.0">
+               <buttons>
+                  <Button onAction="#Eliminar" text="Eliminar" />
+               </buttons>
+            </ButtonBar>
+            <Button layoutX="470.0" layoutY="471.0" mnemonicParsing="false" onAction="#clicVolver" text="Volver" />
+            <Label layoutX="26.0" layoutY="28.0" text="Consultar Bitacoras" />
+         </children>
+      </AnchorPane>
+   </children>
 
 </VBox>

@@ -90,6 +90,17 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void clicBtnConsultarSoftware(ActionEvent event) {
+        try{
+            Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLConsultaSoftware.fxml"));
+            Scene escenaAdmin = new Scene(vista);
+            Stage escenarioNuevo = new Stage();
+            escenarioNuevo.setTitle("Registro de periféricos");
+            escenarioNuevo.setScene(escenaAdmin);
+            escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+            escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", io.getMessage(), Alert.AlertType.ERROR);
+        }
         
     }
 
@@ -105,7 +116,17 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void clicBtnRegistrarSoftware(ActionEvent event) {
-        
+        try{
+            Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLRegistrarSoftware.fxml"));
+            Scene escenaAdmin = new Scene(vista);
+            Stage escenarioNuevo = new Stage();
+            escenarioNuevo.setTitle("Registro de periféricos");
+            escenarioNuevo.setScene(escenaAdmin);
+            escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+            escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -152,28 +173,12 @@ public class FXMLMenuController implements Initializable {
             Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
         }
     }
-
-    @FXML
-     private void clicBtnBitacoras(ActionEvent event) {
-       try {
-         Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLCrearBitacora.fxml"));
-         Scene escenaAdmin = new Scene(vista);
-              Stage escenarioNuevo = new Stage();
-              escenarioNuevo.setTitle("Bitácoras");
-              escenarioNuevo.setScene(escenaAdmin);
-              escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
-              escenarioNuevo.showAndWait();
-         }catch(IOException io){
-             Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
-         }
-    }
-     
      
     @FXML
     private void clicBtnConsultarBitacora(ActionEvent event) {
       try {
-       Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLConsultarBitacora.fxml"));
-       Scene escenaAdmin = new Scene(vista);
+            Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLConsultarBitacora.fxml"));
+            Scene escenaAdmin = new Scene(vista);
             Stage escenarioNuevo = new Stage();
             escenarioNuevo.setTitle("Bitácoras");
             escenarioNuevo.setScene(escenaAdmin);
@@ -182,6 +187,21 @@ public class FXMLMenuController implements Initializable {
        }catch(IOException io){
            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
        }
+    }
+
+    @FXML
+    private void clicBtnRegistrarBitacora(ActionEvent event) {
+        try {
+            Parent vista = FXMLLoader.load(getClass().getResource("bitacora/FXMLRegistraBitacora.fxml"));
+            Scene escenaAdmin = new Scene(vista);
+            Stage escenarioNuevo = new Stage();
+            escenarioNuevo.setTitle("Bitácoras");
+            escenarioNuevo.setScene(escenaAdmin);
+            escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+            escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", io.getMessage(), Alert.AlertType.ERROR);
+        }
     }
     
 }

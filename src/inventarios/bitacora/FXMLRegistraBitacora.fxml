@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.bitacora.CrearBitacoraController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.bitacora.FXMLRegistraBitacoraController">
    <children>
       <Label layoutX="14.0" layoutY="22.0" text="Registrar Bitacora" />
       <Label layoutX="14.0" layoutY="71.0" text="Descripcion" />
       <TextArea fx:id="taDescripcion" layoutX="158.0" layoutY="80.0" prefHeight="110.0" prefWidth="314.0" />
-      <Label layoutX="14.0" layoutY="251.0" text="Fecha" />
+      <Label layoutX="14.0" layoutY="260.0" text="Fecha" />
       <DatePicker fx:id="dpFecha" layoutX="151.0" layoutY="256.0" />
       <Button layoutX="514.0" layoutY="355.0" mnemonicParsing="false" onAction="#registrar" text="Registrar" />
       <Button layoutX="426.0" layoutY="355.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+      <ComboBox fx:id="cbEquipoComputo" layoutX="151.0" layoutY="210.0" prefWidth="150.0" />
+      <Label layoutX="14.0" layoutY="214.0" text="EC" />
    </children>
 </AnchorPane>

@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/seren/Documents/FEI/Desarrollo%20de%20Software/InventariOS/src/inventarios/FXMLMenuController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/software/FXMLConsultaSoftwareController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/FXMLInicioSesionController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/FXMLMenuController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/pojo/SoftwareListaRespuesta.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/modelo/ConexionBD.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/dao/CentroComputoDAO.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/usuarios/FXMLConsultaUsuariosController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/centroscomputo/FXMLModificaCCController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/pojo/BitacoraRespuesta.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/centroscomputo/FXMLConsultaCCController.java</file>
+            <file>file:/C:/Users/miran/OneDrive/Documentos/UV/InventariOS/InventariOS/src/inventarios/pojo/EquipoRespuesta.java</file>
         </group>
     </open-files>
 </project-private>
