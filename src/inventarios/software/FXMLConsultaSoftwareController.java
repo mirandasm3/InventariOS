@@ -12,6 +12,7 @@ import inventarios.util.Utilidades;
 import inventarios.util.singletonSoftware;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -75,36 +78,38 @@ public class FXMLConsultaSoftwareController implements Initializable {
 
     @FXML
     private void btnEliminar(ActionEvent event) {
-        Software softwareSeleccionado = tvSoftware.getSelectionModel().getSelectedItem();
-        if(softwareSeleccionado !=null){
-            boolean borrarRegistro = Utilidades.mostrarDialogoConfirmacion("Confirmar eliminacion", 
-                    "Estas seguro de que deseas eliminar el registro del software " 
-                            + softwareSeleccionado.getNombre() + "?");
-            if(borrarRegistro){
-                int codigoRespuesta = SoftwareDAO.eliminarSoftware(softwareSeleccionado.getIdSoftware());
-                switch(codigoRespuesta){
-                    case Constantes.ERROR_CONEXION:
-                        Utilidades.mostrarDialogoSimple("Error de conexion",
-                                "Error en la conexión con la base de datos.",
-                                Alert.AlertType.ERROR);
-                        break;
-                    case Constantes.ERROR_CONSULTA:
-                        Utilidades.mostrarDialogoSimple("Error de consulta",
-                               "Por el momento no se puede obtener la información.",
-                               Alert.AlertType.INFORMATION);
-                        break;
-                    case Constantes.OPERACION_EXITOSA:
-                        Utilidades.mostrarDialogoSimple("Software actualizado", "La informacion del del software fue eliminada correctamente", Alert.AlertType.INFORMATION);
-                        EquipoHasSoftwareDAO.eliminarSoftware_Equipo(softwareSeleccionado.getIdSoftware(), softwareSeleccionado.getIdEquipo());
-                        cargarTablaSoftware();
-                        break;
-                        
-                }
-            }
+      Software softwareSeleccionado = tvSoftware.getSelectionModel().getSelectedItem();
+      if(softwareSeleccionado !=null){
+        Alert alert = new Alert (Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación");
+        alert.setHeaderText("¿Desea eliminar el registro?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+          int codigoRespuesta = SoftwareDAO.eliminarSoftware(softwareSeleccionado.getIdSoftware());
+          switch(codigoRespuesta){
+            case Constantes.ERROR_CONEXION:
+              Utilidades.mostrarAlertaSimple("Error de conexion", "Error en la "
+                      + "conexión con la base de datos.", Alert.AlertType.ERROR);
+              break;
+            case Constantes.ERROR_CONSULTA:
+              Utilidades.mostrarAlertaSimple("Error de consulta", "Por el "
+                        + "momento no se puede obtener la información.", Alert.AlertType.INFORMATION);
+              break;
+            case Constantes.OPERACION_EXITOSA:
+              Utilidades.mostrarAlertaSimple("Software actualizado", "La "
+                        + "informacion del del software fue eliminada correctamente", Alert.AlertType.INFORMATION);
+              EquipoHasSoftwareDAO.eliminarSoftware_Equipo(softwareSeleccionado.getIdSoftware(), softwareSeleccionado.getIdEquipo());
+              cargarTablaSoftware();
+              break;      
+          }
         }else{
-            Utilidades.mostrarDialogoSimple("Selecciona un alumno", "Para borrar un alumno debes seleccionarlo previamente en la taba",
-                    Alert.AlertType.WARNING);
+           alert.close();
         }
+      }else{
+        Utilidades.mostrarAlertaSimple("Selecciona un alumno", "Para borrar un alumno debes seleccionarlo previamente en la taba",
+                    Alert.AlertType.WARNING);
+      }
     }
 
     private void cargarTablaSoftware() {
@@ -112,12 +117,12 @@ public class FXMLConsultaSoftwareController implements Initializable {
         SoftwareListaRespuesta respuestaBD = SoftwareDAO.obtenerInformacionSoftware();
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Sin conexion",
+                Utilidades.mostrarAlertaSimple("Sin conexion",
                         "Lo sentimos por el momento no hay conexión para pdoer cargar la información",
                         Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error al cargar la base de datos",
+                Utilidades.mostrarAlertaSimple("Error al cargar la base de datos",
                         "Hubo un error al cargar la información por favor inténtelo más tarde",
                         Alert.AlertType.WARNING);
                 break;
@@ -182,29 +187,45 @@ public class FXMLConsultaSoftwareController implements Initializable {
         });
         return filtroSeleccionado;
     }
+    
     private void irFormularioSoftware (){
-       Stage escenarioBase = (Stage) tvSoftware.getScene().getWindow();
-        escenarioBase.setScene(Utilidades.inicializarEscena("GUI/FXMLRegistrarSoftware.fxml"));
-        escenarioBase.setTitle("Registrar Software");
-        escenarioBase.setResizable(false);
-        escenarioBase.show();
+      try {
+        Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLRegistrarSoftware.fxml"));
+        Scene escenaAdmin = new Scene(vista);
+        Stage escenarioNuevo = new Stage();
+        escenarioNuevo.setTitle("Registro de software");
+        escenarioNuevo.setScene(escenaAdmin);
+        escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+        escenarioNuevo.showAndWait();
+      } catch (IOException ex) {
+        Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+      }
     }
 
     @FXML
     private void btnModificar(ActionEvent event) {
         Software softwareSeleccionado = tvSoftware.getSelectionModel().getSelectedItem();
         if(softwareSeleccionado == null){
-            Utilidades.mostrarDialogoSimple("Debe elegir un software", 
+            Utilidades.mostrarAlertaSimple("Debe elegir un software", 
                     "Intente seleccionar un software antes de intentar modificarlo", 
                     Alert.AlertType.INFORMATION);
         }else{
                 singletonSoftware.getInstance().esEdicion = true;
                 singletonSoftware.getInstance().softwareActivo = softwareSeleccionado;
                 Stage escenarioBase = (Stage) tvSoftware.getScene().getWindow();
-                escenarioBase.setScene(Utilidades.inicializarEscena("GUI/FXMLRegistrarSoftware.fxml"));
-                escenarioBase.setTitle("Modificar Software");
-                escenarioBase.setResizable(false);
-                escenarioBase.show();
+                Parent vista;
+                  try {
+                    vista = FXMLLoader.load(getClass().getResource("software/FXMLRegistrarSoftware.fxml"));
+                    Scene escenaAdmin = new Scene(vista);
+                    Stage escenarioNuevo = new Stage();
+                    escenarioNuevo.setTitle("Registro de software");
+                    escenarioNuevo.setScene(escenaAdmin);
+                    escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+                    escenarioNuevo.showAndWait();
+                  } catch (IOException ex) {
+                    Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+                  }
+
             }
         }
     

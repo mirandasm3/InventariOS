@@ -20,6 +20,7 @@ import inventarios.util.singletonSoftware;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -107,23 +109,26 @@ public class FXMLRegistrarSoftwareController implements Initializable {
                     actualizarSoftware(softwareActivo);
                 }else{
                     registrarSoftware(softwareActivo);
-                    Utilidades.mostrarDialogoSimple("Registro", "Registrado", Alert.AlertType.CONFIRMATION);
+                    Utilidades.mostrarAlertaSimple("Registro", "Registrado", Alert.AlertType.CONFIRMATION);
                 }
             }
         }else{
-            Utilidades.mostrarDialogoSimple("Selecciona un equipo", "Selecciona el registro de la tabla del equipo para asignar el software", Alert.AlertType.WARNING);
+            Utilidades.mostrarAlertaSimple("Selecciona un equipo", "Selecciona el registro de la tabla del equipo para asignar el software", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
     private void btnCancelar(ActionEvent event) {
-        boolean respuestaDialogo = Utilidades.mostrarDialogoConfirmacion(
-               "Cancelar modificacion", 
-               "La informacion modificada se perdera ¿Desea continuar?"
-       );
-       if(respuestaDialogo){
+      Alert alert = new Alert (Alert.AlertType.CONFIRMATION);
+      alert.setTitle("Confirmación");
+      alert.setHeaderText("¿Desea cacnelar la operación?");
+      
+      Optional<ButtonType> result = alert.showAndWait();
+       if(result.get() == ButtonType.OK){
            resetearSingleton();
            regresarPantalla();
+       }else{
+         alert.close();
        }
     }
     
@@ -162,17 +167,17 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         int codigoRespuesta = SoftwareDAO.modificarSoftware(softwareActivo,idEquipoSeleccionado);
         switch (codigoRespuesta) {
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexion",
+                Utilidades.mostrarAlertaSimple("Error de conexion",
                         "Error en la conexión con la base de datos.",
                         Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de consulta",
+                Utilidades.mostrarAlertaSimple("Error de consulta",
                         "Por el momento no se puede obtener la información.",
                         Alert.AlertType.INFORMATION);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Software actualizado", 
+                Utilidades.mostrarAlertaSimple("Software actualizado", 
                         "La informacion del software fue actualizada correctamente",
                         Alert.AlertType.INFORMATION);
                 EquipoHasSoftwareDAO.modificarRelacionEquipoSoftware(
@@ -188,12 +193,12 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         int idNuevoSoftwareRegistrado = respuestaSoftware.getSoftwareRespuesta().getIdSoftware();
         switch (codigoRespuesta) {
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Error de conexion",
+                Utilidades.mostrarAlertaSimple("Error de conexion",
                         "Error en la conexión con la base de datos.",
                         Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de consulta",
+                Utilidades.mostrarAlertaSimple("Error de consulta",
                         "Por el momento no se puede obtener la información.",
                         Alert.AlertType.INFORMATION);
                 break;
@@ -204,12 +209,10 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         }
     }
     private void regresarPantalla() {
-        Stage escenarioBase = (Stage) tfNombre.getScene().getWindow();
-        escenarioBase.setScene(Utilidades.inicializarEscena("GUI/FXMLConsultaSoftware.fxml"));
-        escenarioBase.setTitle("Consultar Registros");
-        escenarioBase.setResizable(false);
-        escenarioBase.show();
+        Stage stage = (Stage) tfEditor.getScene().getWindow();
+        stage.close();
     }
+    
     private void configurarTabla(){
         colIdentificador.setCellValueFactory(new PropertyValueFactory("identificador"));
         colCentroComputo.setCellValueFactory(new PropertyValueFactory("nombreCentroComputo"));
@@ -225,12 +228,12 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         EquipoRespuesta respuestaBD = EquipoDAO.obtenerInformacionEquipo();
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Sin conexion",
+                Utilidades.mostrarAlertaSimple("Sin conexion",
                         "Por el momento no hay conexión con la base de datos, por favor reintente más tarde",
                         Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error de conexión con la base de datos",
+                Utilidades.mostrarAlertaSimple("Error de conexión con la base de datos",
                         "Por favor inténtelo más tarde",
                         Alert.AlertType.WARNING);
                 break;
@@ -245,17 +248,17 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         EquipoHasSoftwareRespuesta respuestaBD = EquipoHasSoftwareDAO.registrarSoftware_Equipo(idSoftware,idEquipoSeleccionado);
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
-                Utilidades.mostrarDialogoSimple("Sin conexion",
+                Utilidades.mostrarAlertaSimple("Sin conexion",
                         "Eror de conexión con la base de datos, por favor intente más tarde",
                         Alert.AlertType.ERROR);
                 break;
             case Constantes.ERROR_CONSULTA:
-                Utilidades.mostrarDialogoSimple("Error al cargar la base de datos",
+                Utilidades.mostrarAlertaSimple("Error al cargar la base de datos",
                         "Hubo un error al cargar la información por favor inténtelo más tarde",
                         Alert.AlertType.WARNING);
                 break;
             case Constantes.OPERACION_EXITOSA:
-                Utilidades.mostrarDialogoSimple("Software actualizado", 
+                Utilidades.mostrarAlertaSimple("Software actualizado", 
                         "La informacion de software fue registrada correctamente",
                         Alert.AlertType.INFORMATION);
                 break;
