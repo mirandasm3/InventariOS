@@ -1,6 +1,8 @@
 
 package inventarios.pojo;
 
+import java.util.List;
+
 public class Software {
     private int idSoftware;
     private String nombre;
@@ -11,6 +13,15 @@ public class Software {
     private String identificadorEquipo;
     private String identificadorCC;
     private int idEquipo;
+
+  public List<Equipo> getEquiposInstalados() {
+    return equiposInstalados;
+  }
+
+  public void setEquiposInstalados(List<Equipo> equiposInstalados) {
+    this.equiposInstalados = equiposInstalados;
+  }
+    private List<Equipo> equiposInstalados;
     
      public Software() {
     }

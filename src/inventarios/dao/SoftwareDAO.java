@@ -62,6 +62,43 @@ public class SoftwareDAO {
         }
         return respuesta;
     }
+    
+public static ArrayList<Software> consultarSoftware(int idCentroComputo) throws SQLException {
+    ArrayList<Software> softwareBD = null;
+    Connection conexionBD = ConexionBD.abrirConexionBD();
+    
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT * FROM software WHERE identificadorCC = ?";
+            PreparedStatement consultaObtenerTodos = conexionBD.prepareStatement(consulta);
+            consultaObtenerTodos.setInt(1, idCentroComputo);
+            ResultSet resultadoConsulta = consultaObtenerTodos.executeQuery();
+
+            softwareBD = new ArrayList<>();
+
+            while (resultadoConsulta.next()) {
+                Software software = new Software();
+                software.setIdSoftware(resultadoConsulta.getInt("idSoftware"));
+                software.setNombre(resultadoConsulta.getString("nombre"));
+                software.setVersion(resultadoConsulta.getString("version"));
+                software.setEditor(resultadoConsulta.getString("editor"));
+                software.setTamano(resultadoConsulta.getString("tamano"));
+                software.setFechaInstalacion(resultadoConsulta.getString("fechaInstalacion"));
+                software.setIdentificadorEquipo(resultadoConsulta.getString("identificadorEquipo"));
+                software.setIdentificadorCC(resultadoConsulta.getString("identificadorCC"));
+                software.setIdEquipo(resultadoConsulta.getInt("idEquipo"));
+
+                softwareBD.add(software);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            conexionBD.close();
+        }
+    }
+    
+    return softwareBD;
+}
 
     public static SoftwareRespuesta registrarSoftware(Software softwareActivo) {
         SoftwareRespuesta respuesta = new SoftwareRespuesta();

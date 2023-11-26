@@ -14,6 +14,7 @@ import inventarios.util.Constantes;
 import inventarios.util.Utilidades;
 import inventarios.util.SingletonSoftware;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -93,7 +94,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
     }
 
     @FXML
-    private void btnRegistrar(ActionEvent event) {
+    private void btnRegistrar(ActionEvent event) throws SQLException {
         validarCampos();
         
         Equipo equipoSeleccionado = tvEquipos.getSelectionModel().getSelectedItem();
@@ -189,7 +190,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
                 break;
         }
     }
-    private void registrarSoftware(Software softwareActivo) {
+    private void registrarSoftware(Software softwareActivo) throws SQLException {
         SoftwareRespuesta respuestaSoftware = SoftwareDAO.registrarSoftware(softwareActivo);
         int codigoRespuesta = respuestaSoftware.getCodigoRespuesta();
         int idNuevoSoftwareRegistrado = respuestaSoftware.getSoftwareRespuesta().getIdSoftware();
@@ -246,7 +247,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         }
     }
 
-    private void asignarSoftwareEquipo(int idSoftware, int idEquipoSeleccionado) {
+    private void asignarSoftwareEquipo(int idSoftware, int idEquipoSeleccionado) throws SQLException {
         EquipoHasSoftwareRespuesta respuestaBD = EquipoHasSoftwareDAO.registrarSoftware_Equipo(idSoftware,idEquipoSeleccionado);
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:

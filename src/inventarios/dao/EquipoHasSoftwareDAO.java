@@ -15,6 +15,7 @@ import java.sql.SQLException;
 
 public class EquipoHasSoftwareDAO {
 
+
     public static EquipoHasSoftwareRespuesta registrarSoftware_Equipo(int idSoftware, int idEquipoSeleccionado) {
        EquipoHasSoftwareRespuesta respuesta = null;
        Connection conexionBD = ConexionBD.abrirConexionBD();
@@ -38,6 +39,7 @@ public class EquipoHasSoftwareDAO {
         }  
        return respuesta;
     }
+
     
     public static int eliminarSoftware_Equipo(int idSoftware, int idEquipoSeleccionado) {
        int respuesta = Constantes.OPERACION_EXITOSA;

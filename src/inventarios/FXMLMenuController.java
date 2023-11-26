@@ -94,7 +94,7 @@ public class FXMLMenuController implements Initializable {
             Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLConsultaSoftware.fxml"));
             Scene escenaAdmin = new Scene(vista);
             Stage escenarioNuevo = new Stage();
-            escenarioNuevo.setTitle("Registro de periféricos");
+            escenarioNuevo.setTitle("Consulta Software");
             escenarioNuevo.setScene(escenaAdmin);
             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
             escenarioNuevo.showAndWait();
@@ -120,7 +120,7 @@ public class FXMLMenuController implements Initializable {
             Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLRegistrarSoftware.fxml"));
             Scene escenaAdmin = new Scene(vista);
             Stage escenarioNuevo = new Stage();
-            escenarioNuevo.setTitle("Registro de periféricos");
+            escenarioNuevo.setTitle("Registro de Software");
             escenarioNuevo.setScene(escenaAdmin);
             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
             escenarioNuevo.showAndWait();

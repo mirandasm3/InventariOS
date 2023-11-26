@@ -4,6 +4,8 @@
  */
 package inventarios.pojo;
 
+import java.util.List;
+
 
 public class Equipo {
     private int idEquipoComputo;
@@ -17,6 +19,7 @@ public class Equipo {
     private String ubicacionFisica;
     private String sistemaOperativo;
     private int nombreCentroComputo;
+    private List<Software> softwareInstalado;
 
     public Equipo() {
     }

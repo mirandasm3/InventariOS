@@ -73,7 +73,10 @@ public class FXMLConsultaSoftwareController implements Initializable {
 
     @FXML
     private void btnConsultar(ActionEvent event) {
-    }
+
+     
+  }
+
 
 
     @FXML

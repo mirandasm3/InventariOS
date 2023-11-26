@@ -10,6 +10,7 @@ public class EquipoHasSoftwareRespuesta {
     private int idSoftware;
     private int idEquipo;
 
+
     public EquipoHasSoftwareRespuesta() {
     }
 
