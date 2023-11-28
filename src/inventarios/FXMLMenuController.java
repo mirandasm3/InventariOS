@@ -94,7 +94,7 @@ public class FXMLMenuController implements Initializable {
             Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLConsultaSoftware.fxml"));
             Scene escenaAdmin = new Scene(vista);
             Stage escenarioNuevo = new Stage();
-            escenarioNuevo.setTitle("Consulta Software");
+            escenarioNuevo.setTitle("Registro de periféricos");
             escenarioNuevo.setScene(escenaAdmin);
             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
             escenarioNuevo.showAndWait();
@@ -106,12 +106,32 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void clicBtnConsultarEquipo(ActionEvent event) {
-        
+        try{
+            Parent vista = FXMLLoader.load(getClass().getResource("equipocomputo/FXMLConsultaEquiposComputo.fxml"));
+            Scene escenaAdmin = new Scene(vista);
+            Stage escenarioNuevo = new Stage();
+            escenarioNuevo.setTitle("Registro de periféricos");
+            escenarioNuevo.setScene(escenaAdmin);
+            escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+            escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     private void clicBtnRegistrarEquipo(ActionEvent event) {
-        
+        try{
+            Parent vista = FXMLLoader.load(getClass().getResource("equipocomputo/FXMLRegistroEquipoComputo.fxml"));
+            Scene escenaAdmin = new Scene(vista);
+            Stage escenarioNuevo = new Stage();
+            escenarioNuevo.setTitle("Registro de periféricos");
+            escenarioNuevo.setScene(escenaAdmin);
+            escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
+            escenarioNuevo.showAndWait();
+        }catch(IOException io){
+            Utilidades.mostrarAlertaSimple("Error", "Error al cargar.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
@@ -120,7 +140,7 @@ public class FXMLMenuController implements Initializable {
             Parent vista = FXMLLoader.load(getClass().getResource("software/FXMLRegistrarSoftware.fxml"));
             Scene escenaAdmin = new Scene(vista);
             Stage escenarioNuevo = new Stage();
-            escenarioNuevo.setTitle("Registro de Software");
+            escenarioNuevo.setTitle("Registro de periféricos");
             escenarioNuevo.setScene(escenaAdmin);
             escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
             escenarioNuevo.showAndWait();

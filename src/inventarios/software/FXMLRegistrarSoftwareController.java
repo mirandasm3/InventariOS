@@ -14,7 +14,6 @@ import inventarios.util.Constantes;
 import inventarios.util.Utilidades;
 import inventarios.util.SingletonSoftware;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -94,7 +93,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
     }
 
     @FXML
-    private void btnRegistrar(ActionEvent event) throws SQLException {
+    private void btnRegistrar(ActionEvent event) {
         validarCampos();
         
         Equipo equipoSeleccionado = tvEquipos.getSelectionModel().getSelectedItem();
@@ -124,7 +123,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
     private void btnCancelar(ActionEvent event) {
       Alert alert = new Alert (Alert.AlertType.CONFIRMATION);
       alert.setTitle("Confirmación");
-      alert.setHeaderText("¿Desea cacnelar la operación?");
+      alert.setHeaderText("¿Desea cancelar la operación?");
       
       Optional<ButtonType> result = alert.showAndWait();
        if(result.get() == ButtonType.OK){
@@ -190,7 +189,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
                 break;
         }
     }
-    private void registrarSoftware(Software softwareActivo) throws SQLException {
+    private void registrarSoftware(Software softwareActivo) {
         SoftwareRespuesta respuestaSoftware = SoftwareDAO.registrarSoftware(softwareActivo);
         int codigoRespuesta = respuestaSoftware.getCodigoRespuesta();
         int idNuevoSoftwareRegistrado = respuestaSoftware.getSoftwareRespuesta().getIdSoftware();
@@ -247,7 +246,7 @@ public class FXMLRegistrarSoftwareController implements Initializable {
         }
     }
 
-    private void asignarSoftwareEquipo(int idSoftware, int idEquipoSeleccionado) throws SQLException {
+    private void asignarSoftwareEquipo(int idSoftware, int idEquipoSeleccionado) {
         EquipoHasSoftwareRespuesta respuestaBD = EquipoHasSoftwareDAO.registrarSoftware_Equipo(idSoftware,idEquipoSeleccionado);
         switch(respuestaBD.getCodigoRespuesta()){
             case Constantes.ERROR_CONEXION:
