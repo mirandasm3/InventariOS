@@ -8,7 +8,7 @@ public class Software {
     private String nombre;
     private String version;
     private String editor;
-    private String tamano;
+    private String tamaño;
     private String fechaInstalacion;
     private String identificadorEquipo;
     private String identificadorCC;
@@ -26,12 +26,20 @@ public class Software {
      public Software() {
     }
 
-    public Software(int idSoftware, String nombre, String version, String editor, String tamano, String fechaInstalacion, String identificadorEquipo, String identificadorCC, int idEquipo) {
+    public Software(String nombre, String editor, String tamaño) {
+        this.nombre = nombre;
+        this.editor = editor;
+        this.tamaño = tamaño;
+    }
+     
+    
+
+    public Software(int idSoftware, String nombre, String version, String editor, String tamaño, String fechaInstalacion, String identificadorEquipo, String identificadorCC, int idEquipo) {
         this.idSoftware = idSoftware;
         this.nombre = nombre;
         this.version = version;
         this.editor = editor;
-        this.tamano = tamano;
+        this.tamaño = tamaño;
         this.fechaInstalacion = fechaInstalacion;
         this.identificadorEquipo = identificadorEquipo;
         this.identificadorCC = identificadorCC;
@@ -70,12 +78,12 @@ public class Software {
         this.editor = editor;
     }
 
-    public String getTamano() {
-        return tamano;
+    public String getTamaño() {
+        return tamaño;
     }
 
-    public void setTamano(String tamano) {
-        this.tamano = tamano;
+    public void setTamaño(String tamano) {
+        this.tamaño = tamano;
     }
 
     public String getFechaInstalacion() {

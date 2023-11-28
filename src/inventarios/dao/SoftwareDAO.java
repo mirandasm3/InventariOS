@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package inventarios.dao;
 
 import inventarios.pojo.Software;
@@ -12,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import inventarios.modelo.ConexionBD;
+import inventarios.pojo.ResultadoOperacion;
 import inventarios.pojo.SoftwareRespuesta;
 import inventarios.util.Constantes;
 
@@ -43,7 +40,7 @@ public class SoftwareDAO {
                     software.setNombre(resultado.getString("software.nombre"));
                     software.setVersion(resultado.getString("software.version"));
                     software.setEditor(resultado.getString("software.editor"));          
-                    software.setTamano(resultado.getString("software.tamaño"));
+                    software.setTamaño(resultado.getString("software.tamaño"));
                     software.setFechaInstalacion(resultado.getString("software.fechainstalacion"));
                     software.setIdEquipo(resultado.getInt("equipocomputo_idequipocomputo"));
                     software.setIdentificadorCC(resultado.getString("numerocc"));
@@ -63,32 +60,27 @@ public class SoftwareDAO {
         return respuesta;
     }
     
-public static ArrayList<Software> consultarSoftware(int idCentroComputo) throws SQLException {
+public static ArrayList<Software> consultarSoftware() throws SQLException {
     ArrayList<Software> softwareBD = null;
     Connection conexionBD = ConexionBD.abrirConexionBD();
     
     if (conexionBD != null) {
         try {
-            String consulta = "SELECT * FROM software WHERE identificadorCC = ?";
+            String consulta = "SELECT * FROM software";
             PreparedStatement consultaObtenerTodos = conexionBD.prepareStatement(consulta);
-            consultaObtenerTodos.setInt(1, idCentroComputo);
             ResultSet resultadoConsulta = consultaObtenerTodos.executeQuery();
 
             softwareBD = new ArrayList<>();
 
             while (resultadoConsulta.next()) {
-                Software software = new Software();
-                software.setIdSoftware(resultadoConsulta.getInt("idSoftware"));
-                software.setNombre(resultadoConsulta.getString("nombre"));
-                software.setVersion(resultadoConsulta.getString("version"));
-                software.setEditor(resultadoConsulta.getString("editor"));
-                software.setTamano(resultadoConsulta.getString("tamano"));
-                software.setFechaInstalacion(resultadoConsulta.getString("fechaInstalacion"));
-                software.setIdentificadorEquipo(resultadoConsulta.getString("identificadorEquipo"));
-                software.setIdentificadorCC(resultadoConsulta.getString("identificadorCC"));
-                software.setIdEquipo(resultadoConsulta.getInt("idEquipo"));
+                
+                Software temp = new Software();
+                temp.setNombre(resultadoConsulta.getString("nombre"));
+                temp.setVersion(resultadoConsulta.getString("version"));
+                temp.setEditor(resultadoConsulta.getString("editor"));
+                temp.setTamaño(resultadoConsulta.getString("tamaño"));
 
-                softwareBD.add(software);
+                softwareBD.add(temp);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -100,103 +92,135 @@ public static ArrayList<Software> consultarSoftware(int idCentroComputo) throws 
     return softwareBD;
 }
 
-    public static SoftwareRespuesta registrarSoftware(Software softwareActivo) {
-        SoftwareRespuesta respuesta = new SoftwareRespuesta();
+    public static ResultadoOperacion registrarSoftware(Software softwareActivo) throws SQLException {
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
         Connection conexionBD = ConexionBD.abrirConexionBD();
+        respuesta.setFilasAfectadas(-1);
         
         if(conexionBD != null){
             try{
                 String consulta =  "INSERT INTO software "
-                        + "(nombre, version, editor, tamaño, fechainstalacion) "
-                        + "VALUES(?, ?, ?, ?, ?);";
+                        + "(nombre, version, editor, tamaño) "
+                        + "VALUES(?, ?, ?, ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
                 prepararSentencia.setString(1, softwareActivo.getNombre());
                 prepararSentencia.setString(2, softwareActivo.getVersion());
                 prepararSentencia.setString(3, softwareActivo.getEditor());
-                prepararSentencia.setString(4, softwareActivo.getTamano());
-                prepararSentencia.setString(5, softwareActivo.getFechaInstalacion());
-                int filasAfectas = prepararSentencia.executeUpdate();
-                if(filasAfectas != 1){
-                    respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
+                prepararSentencia.setString(4, softwareActivo.getTamaño());
+                
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Software registrado con exito");
+                }else{
+                    respuesta.setMensaje("No se pudo registrar la información del software.");
                 }  
             } catch (SQLException e) {
-                e.printStackTrace();
-                respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
-            }
-            try {
-                String consulta = "SELECT LAST_INSERT_ID();";
-                
-                PreparedStatement prepararSentencia = conexionBD.prepareStatement(consulta);
-                ResultSet resultado = prepararSentencia.executeQuery();           
-                if(resultado.next()) {
-                    softwareActivo.setIdSoftware(resultado.getInt("LAST_INSERT_ID()"));
-
-                    
-                    respuesta.setSoftwareRespuesta(softwareActivo);
-                }
+                respuesta.setMensaje(e.getMessage());
+            }finally{
                 conexionBD.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-                respuesta.setCodigoRespuesta(Constantes.ERROR_CONSULTA);
             }
+        }else{
+            respuesta.setMensaje("Error en la conexion con la base de datos. Intente de nuevo más tarde.");
         }  
         
         return respuesta;
     }
 
-    public static int modificarSoftware(Software softwareActivo,int idEquipoSeleccionado) {
-        int respuesta = Constantes.OPERACION_EXITOSA;
+    public static ResultadoOperacion modificarSoftware(String nombreViejo, Software softwareNuevo) throws SQLException {
         
+        ResultadoOperacion respuesta = new ResultadoOperacion();
+        respuesta.setError(true);
+        respuesta.setFilasAfectadas(-1);
         Connection conexionBD = ConexionBD.abrirConexionBD();
         
         if(conexionBD != null){
             try{
                 String sentencia = "UPDATE software SET nombre = ?, "
-                        + "version = ?, editor = ?, tamaño = ?, "
-                        + "fechainstalacion = ? WHERE idsoftware = ?";
+                        + "version = ?, editor = ?, tamaño = ? WHERE nombre = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setString(1, softwareActivo.getNombre());
-                prepararSentencia.setString(2, softwareActivo.getVersion());
-                prepararSentencia.setString(3, softwareActivo.getEditor());
-                prepararSentencia.setString(4, softwareActivo.getTamano());
-                prepararSentencia.setString(5, softwareActivo.getFechaInstalacion());
-                prepararSentencia.setInt(6, softwareActivo.getIdSoftware());
-            
-                int filasAfectadas = prepararSentencia.executeUpdate();
-                if(filasAfectadas != 1){
-                    respuesta = Constantes.ERROR_CONSULTA;
-                }
+                prepararSentencia.setString(1, softwareNuevo.getNombre());
+                prepararSentencia.setString(2, softwareNuevo.getVersion());
+                prepararSentencia.setString(3, softwareNuevo.getEditor());
+                prepararSentencia.setString(4, softwareNuevo.getTamaño());
                 
-                conexionBD.close();
+                prepararSentencia.setString(5, nombreViejo);
+            
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                    respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Software modificado con éxito.");
+                }else{
+                    respuesta.setMensaje("No se pudo modificar la información del software.");
+                }
             }catch(SQLException e){
-                e.printStackTrace();
-                respuesta = Constantes.ERROR_CONSULTA;
+                respuesta.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
             }
         }else{
-            respuesta = Constantes.ERROR_CONEXION;
+            respuesta.setMensaje("Error en la conexión con la base de datos. Intente de nuevo más tarde.");
         }
         return respuesta;
     }
 
-    public static int eliminarSoftware(int idSoftware) {
-       int respuesta;
+    public static ResultadoOperacion eliminarSoftware(String nombre) throws SQLException {
+       ResultadoOperacion respuesta = new ResultadoOperacion();
+       respuesta.setError(true);
+       respuesta.setFilasAfectadas(-1);
         Connection conexionBD = ConexionBD.abrirConexionBD();
+        
         if (conexionBD != null) {
             try {
-                String sentencia = "DELETE FROM software WHERE idsoftware = ?";
+                String sentencia = "DELETE FROM software WHERE (nombre = ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setInt(1, idSoftware);
-                int filasAfectadas = prepararSentencia.executeUpdate();
-                respuesta = (filasAfectadas == 1) ? Constantes.OPERACION_EXITOSA : 
-                        Constantes.ERROR_CONSULTA;
-                conexionBD.close();
+                prepararSentencia.setString(1, nombre);
+                
+                int numeroFilas = prepararSentencia.executeUpdate();
+                if(numeroFilas > 0){
+                  respuesta.setError(false);
+                    respuesta.setFilasAfectadas(numeroFilas);
+                    respuesta.setMensaje("Registro de software eliminado correctamente.");  
+                }else{
+                    respuesta.setMensaje("No se pudo eliminar la información del periférico.");
+                }
             } catch (SQLException e) {
-                respuesta = Constantes.ERROR_CONSULTA;
+                respuesta.setMensaje(e.getMessage());
+            }finally{
+                conexionBD.close();
             }
         } else {
-            respuesta = Constantes.ERROR_CONEXION;
+            respuesta.setMensaje("Por el momento no hay conexión con la base de datos, Intente más tarde.");
         }
         return respuesta;
+    }
+    
+    public static boolean buscarSoftware(String nombre, String version) throws SQLException{
+        Software softwareTemporal = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM software WHERE (nombre = ?, version = ?)";
+                PreparedStatement consultaDB = conexionBD.prepareStatement(consulta);
+                consultaDB.setString(1, nombre);
+                consultaDB.setString(2, version);
+                ResultSet resultadoConsulta = consultaDB.executeQuery();
+                softwareTemporal = new Software();                
+                if(resultadoConsulta.next()){
+                    return true;
+                }else{
+                    return false;
+                }
+            } catch (SQLException s) {
+                s.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return false;
     }
     
 }

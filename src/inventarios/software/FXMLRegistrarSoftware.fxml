@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,54 +8,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLRegistrarSoftwareController">
+<AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="1036.0" style="-fx-background-color: 1036.0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLRegistrarSoftwareController">
    <children>
-      <Label layoutX="17.0" layoutY="64.0" text="Nombre">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="153.0" stroke="#364450" strokeType="INSIDE" width="1036.0" />
+      <Button layoutX="880.0" layoutY="177.0" mnemonicParsing="false" onAction="#btnRegistrar" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="18.0" layoutY="93.0" text="Version">
+         </font></Button>
+      <Button layoutX="880.0" layoutY="248.0" mnemonicParsing="false" onAction="#btnVolver" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #EE6060;" text="Volver" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="17.0" layoutY="121.0" text="Editor">
+         </font></Button>
+      <Text layoutX="56.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Franklin Gothic Medium Cond" size="23.0" />
          </font>
-      </Label>
-      <Label layoutX="17.0" layoutY="148.0" text="Tamaño">
+      </Text>
+      <Text layoutX="56.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Versión:">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Franklin Gothic Medium Cond" size="23.0" />
          </font>
-      </Label>
-      <Label layoutX="17.0" layoutY="177.0" text="Fecha de instalacion">
+      </Text>
+      <Text layoutX="469.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editor:">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="Franklin Gothic Medium Cond" size="23.0" />
          </font>
-      </Label>
-      <TextField fx:id="tfNombre" layoutX="136.0" layoutY="60.0" />
-      <TextField fx:id="tfVersion" layoutX="136.0" layoutY="88.0" />
-      <TextField fx:id="tfEditor" layoutX="136.0" layoutY="116.0" />
-      <TextField fx:id="tfTamano" layoutX="136.0" layoutY="144.0" />
-      <DatePicker fx:id="dtFechaInstalacion" layoutX="136.0" layoutY="173.0" prefHeight="25.0" prefWidth="149.0" />
-      <TableView fx:id="tvEquipos" layoutX="17.0" layoutY="206.0" prefHeight="198.0" prefWidth="567.0">
+      </Text>
+      <Text layoutX="469.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tamaño:">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="23.0" />
+         </font>
+      </Text>
+      <TextField fx:id="tfNombre" layoutX="140.0" layoutY="177.0" prefHeight="31.0" prefWidth="292.0" promptText="Ejemplo: Enterprise Architect" />
+      <TextField fx:id="tfVersion" layoutX="140.0" layoutY="248.0" prefHeight="31.0" prefWidth="292.0" promptText="Ejemplo: 1.0.0.1" />
+      <TextField fx:id="tfEditor" layoutX="550.0" layoutY="177.0" prefHeight="31.0" prefWidth="292.0" promptText="Ejemplo: Microsoft" />
+      <TextField fx:id="tfTamaño" layoutX="550.0" layoutY="248.0" prefHeight="31.0" prefWidth="292.0" promptText="Ejemplo: 2 GB" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#283846" height="374.0" layoutY="321.0" stroke="BLACK" strokeType="INSIDE" width="1036.0" />
+      <TableView fx:id="tvSoftwares" layoutX="56.0" layoutY="348.0" prefHeight="312.0" prefWidth="921.0">
         <columns>
-          <TableColumn fx:id="colIdentificador" prefWidth="91.0" text="Identificador" />
-          <TableColumn fx:id="colCentroComputo" prefWidth="114.0" text="Centro de computo" />
-            <TableColumn fx:id="colUbicacion" prefWidth="82.0" text="Ubicacion" />
-            <TableColumn fx:id="colAlmacenamiento" prefWidth="113.0" text="Almacenamiento" />
-            <TableColumn fx:id="colRAM" prefWidth="58.0" text="RAM" />
-            <TableColumn fx:id="colCPU" prefWidth="108.0" text="CPU" />
+          <TableColumn fx:id="tcNombre" prefWidth="259.0" text="Nombre" />
+          <TableColumn fx:id="tcVersion" minWidth="0.0" prefWidth="226.0" text="Versión" />
+            <TableColumn fx:id="tcEditor" prefWidth="299.0" text="Editor" />
+            <TableColumn fx:id="tcTamaño" prefWidth="136.0" text="Tamaño" />
         </columns>
       </TableView>
-      <Button layoutX="520.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnRegistrar" text="Registrar" />
-      <Button layoutX="450.0" layoutY="404.0" mnemonicParsing="false" onAction="#btnCancelar" text="Cancelar" />
-      <Label fx:id="lbTitulo" layoutX="204.0" layoutY="14.0" text="Registrar Software">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

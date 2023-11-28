@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,30 +8,39 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLConsultaSoftwareController">
+<AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="1036.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLConsultaSoftwareController">
    <children>
-      <TableView fx:id="tvSoftware" layoutX="22.0" layoutY="115.0" prefHeight="354.0" prefWidth="890.0">
+      <TableView fx:id="tvSoftware" layoutX="215.0" layoutY="218.0" prefHeight="354.0" prefWidth="786.0">
         <columns>
-          <TableColumn fx:id="colIdentificadorEquipo" prefWidth="143.0" text="Identificador de Equipo" />
-          <TableColumn fx:id="colNombreSoftware" prefWidth="418.0" text="Nombre de software" />
-            <TableColumn fx:id="colVersion" prefWidth="155.0" text="Version" />
-            <TableColumn fx:id="colCentroComputo" prefWidth="173.0" text="Centro de computo" />
+          <TableColumn fx:id="clNombre" prefWidth="234.0" text="Nombre" />
+          <TableColumn fx:id="clVersion" prefWidth="181.0" text="Version" />
+            <TableColumn fx:id="clEditor" prefWidth="222.0" text="Editor" />
+            <TableColumn fx:id="clTamaño" prefWidth="148.0" text="Tamaño" />
         </columns>
       </TableView>
-      <TextField fx:id="tfBusqueda" layoutX="742.0" layoutY="81.0" prefHeight="25.0" prefWidth="171.0" />
-      <Label layoutX="318.0" layoutY="14.0" text="Consultar registros">
+      <TextField fx:id="tfBusqueda" layoutX="166.0" layoutY="150.0" prefHeight="25.0" prefWidth="171.0" promptText="Ejemplo: Netbeans" />
+      <Button layoutX="856.0" layoutY="149.0" mnemonicParsing="false" onAction="#consultarSoftware" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #364450;" text="Consultar" textFill="WHITE">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="28.0" layoutY="459.0" mnemonicParsing="false" onAction="#modificarSoftware" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #2c4961;" text="Modificar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="28.0" layoutY="520.0" mnemonicParsing="false" onAction="#eliminarSoftware" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #EE6060;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button layoutX="872.0" layoutY="590.0" mnemonicParsing="false" onAction="#volver" prefHeight="33.0" prefWidth="138.0" style="-fx-background-color: #405a40;" text="Volver" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="58.0" layoutY="636.0" stroke="BLACK" strokeType="INSIDE" width="1037.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="116.0" stroke="BLACK" strokeType="INSIDE" width="1037.0" />
+      <Label layoutX="47.0" layoutY="157.0" text="Filtrar por Nombre">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="845.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnConsultar" text="Consultar" />
-      <Button layoutX="761.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnModificar" text="Modificar" />
-      <RadioButton fx:id="tbNombre" layoutX="741.0" layoutY="32.0" mnemonicParsing="false" text="Por nombre">
-         <toggleGroup>
-            <ToggleGroup fx:id="tgFiltroBusqueda" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="tbIdentificadorEquipo" layoutX="741.0" layoutY="59.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="171.0" text="Por identificador de equipo" toggleGroup="$tgFiltroBusqueda" wrapText="true" />
-      <Button layoutX="683.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnEliminar" text="Eliminar" />
    </children>
 </AnchorPane>
