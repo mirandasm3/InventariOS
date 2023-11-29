@@ -66,14 +66,11 @@ public class FXMLModificaCCController implements Initializable {
             
              try{
                 CentroComputo ccBuscar = new CentroComputoDAO().buscarCC(clave);
-                 
-                if(ccBuscar.getNumero() < 0){
                      
                     int numeroEntero = Integer.parseInt(numero);
-                    CentroComputo cc = new CentroComputo(clave, numeroEntero);
 
                     CentroComputoDAO cDao = new CentroComputoDAO();
-                    ResultadoOperacion resultado = cDao.modificarCC(oldCC.getIdCC(), cc);
+                    ResultadoOperacion resultado = cDao.modificarCC(oldCC.getIdCC(), numeroEntero);
                     if(resultado.isError()){
                         Utilidades.mostrarAlertaSimple("Error", resultado.getMensaje(), Alert.AlertType.ERROR);
                     
@@ -83,9 +80,7 @@ public class FXMLModificaCCController implements Initializable {
                         Stage escenarioRegistro = (Stage) tfClave.getScene().getWindow();
                         escenarioRegistro.close(); 
                     }
-                }else{
-                    Utilidades.mostrarAlertaSimple("Error", "La clave que intenta registrar ya se encuentra en la base de datos.", Alert.AlertType.ERROR);
-                }
+
                     
                 }catch(SQLException e){
                     Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);

@@ -33,7 +33,7 @@
                   <Font name="Franklin Gothic Medium Cond" size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="tfClave" GridPane.columnIndex="1" />
+            <TextField fx:id="tfClave" editable="false" GridPane.columnIndex="1" />
             <TextField fx:id="tfNumero" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <columnConstraints>
