@@ -75,6 +75,7 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
             while (resultadoConsulta.next()) {
                 
                 Software temp = new Software();
+                temp.setIdSoftware(resultadoConsulta.getInt("idsoftware"));
                 temp.setNombre(resultadoConsulta.getString("nombre"));
                 temp.setVersion(resultadoConsulta.getString("version"));
                 temp.setEditor(resultadoConsulta.getString("editor"));
@@ -129,7 +130,7 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
         return respuesta;
     }
 
-    public static ResultadoOperacion modificarSoftware(String nombreViejo, Software softwareNuevo) throws SQLException {
+    public static ResultadoOperacion modificarSoftware(int idSoftware, Software softwareNuevo) throws SQLException {
         
         ResultadoOperacion respuesta = new ResultadoOperacion();
         respuesta.setError(true);
@@ -139,14 +140,14 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
         if(conexionBD != null){
             try{
                 String sentencia = "UPDATE software SET nombre = ?, "
-                        + "version = ?, editor = ?, tamaño = ? WHERE nombre = ?";
+                        + "version = ?, editor = ?, tamaño = ? WHERE idsoftware = ?";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1, softwareNuevo.getNombre());
                 prepararSentencia.setString(2, softwareNuevo.getVersion());
                 prepararSentencia.setString(3, softwareNuevo.getEditor());
                 prepararSentencia.setString(4, softwareNuevo.getTamaño());
                 
-                prepararSentencia.setString(5, nombreViejo);
+                prepararSentencia.setInt(5, idSoftware);
             
                 int numeroFilas = prepararSentencia.executeUpdate();
                 if(numeroFilas > 0){
@@ -167,7 +168,7 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
         return respuesta;
     }
 
-    public static ResultadoOperacion eliminarSoftware(String nombre) throws SQLException {
+    public static ResultadoOperacion eliminarSoftware(int idSoftware) throws SQLException {
        ResultadoOperacion respuesta = new ResultadoOperacion();
        respuesta.setError(true);
        respuesta.setFilasAfectadas(-1);
@@ -175,9 +176,9 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
         
         if (conexionBD != null) {
             try {
-                String sentencia = "DELETE FROM software WHERE (nombre = ?)";
+                String sentencia = "DELETE FROM software WHERE (idsoftware = ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setString(1, nombre);
+                prepararSentencia.setInt(1, idSoftware);
                 
                 int numeroFilas = prepararSentencia.executeUpdate();
                 if(numeroFilas > 0){

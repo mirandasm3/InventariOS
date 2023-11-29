@@ -129,7 +129,7 @@ public class FXMLConsultaSoftwareController implements Initializable {
                 SoftwareDAO sDao = new SoftwareDAO();
                 ResultadoOperacion resultado;
                 try {
-                    resultado = sDao.eliminarSoftware(softwareSeleccionado.getNombre());
+                    resultado = sDao.eliminarSoftware(softwareSeleccionado.getIdSoftware());
                     if(resultado.isError()){
                         Utilidades.mostrarAlertaSimple("Error", "Error en la eliminación.", Alert.AlertType.ERROR);
                     }else{

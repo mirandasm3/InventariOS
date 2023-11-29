@@ -90,5 +90,10 @@
             <TextField fx:id="tfSistemaOperativo" prefHeight="39.0" prefWidth="262.0" promptText="Ej. Windows" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          </children>
       </GridPane>
+      <Text fill="WHITE" layoutX="37.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipos de cómputo">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="28.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

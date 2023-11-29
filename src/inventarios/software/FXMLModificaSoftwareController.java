@@ -40,10 +40,12 @@ public class FXMLModificaSoftwareController implements Initializable {
     private void modificarSoftware(ActionEvent event) {
         Software softwareNuevo = new Software();
         
+        int idSoftware = software.getIdEquipo();
         String nombre = tfNombre.getText();
         String version = tfVersion.getText();
         String editor = tfEditor.getText();
         String tamaño = tfTamaño.getText();
+        
         
         softwareNuevo.setNombre(nombre);
         softwareNuevo.setVersion(version);
@@ -55,9 +57,9 @@ public class FXMLModificaSoftwareController implements Initializable {
         }else{
             SoftwareDAO sDao = new SoftwareDAO();
             try {
-                ResultadoOperacion resultado = sDao.modificarSoftware(nombre, softwareNuevo);
+                ResultadoOperacion resultado = sDao.modificarSoftware(idSoftware, softwareNuevo);
                 if(resultado.isError()){
-                    Utilidades.mostrarAlertaSimple("Error", "Error en el registro de actualización.", Alert.AlertType.ERROR);
+                    Utilidades.mostrarAlertaSimple("Error", resultado.getMensaje(), Alert.AlertType.ERROR);
                 }else{
                    Utilidades.mostrarAlertaSimple("Actualización exitosa", "Software actualizado con éxito.\n"+" Actualice la tabla para"
                             + "visualizar los cambios.", Alert.AlertType.INFORMATION);
@@ -88,11 +90,12 @@ public class FXMLModificaSoftwareController implements Initializable {
     void setSoftware(Software softwareSeleccionado){
         this.software = softwareSeleccionado;
         
+        int idSoftware = software.getIdSoftware();
         String oldNombre = software.getNombre();
         String oldVersion = software.getVersion();
         String oldEditor = software.getEditor();
         String oldTamaño = software.getTamaño();
-        
+      
         tfNombre.setText(oldNombre);
         tfVersion.setText(oldVersion);
         tfEditor.setText(oldEditor);
