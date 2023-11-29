@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import inventarios.modelo.ConexionBD;
 import inventarios.pojo.ResultadoOperacion;
-import inventarios.pojo.SoftwareRespuesta;
 import inventarios.util.Constantes;
 
 
@@ -96,8 +95,8 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
     public static ResultadoOperacion registrarSoftware(Software softwareActivo) throws SQLException {
         ResultadoOperacion respuesta = new ResultadoOperacion();
         respuesta.setError(true);
-        Connection conexionBD = ConexionBD.abrirConexionBD();
         respuesta.setFilasAfectadas(-1);
+        Connection conexionBD = ConexionBD.abrirConexionBD();        
         
         if(conexionBD != null){
             try{
@@ -140,7 +139,7 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
         if(conexionBD != null){
             try{
                 String sentencia = "UPDATE software SET nombre = ?, "
-                        + "version = ?, editor = ?, tamaño = ? WHERE idsoftware = ?";
+                        + "version = ?, editor = ?, tamaño = ? WHERE (idSoftware = ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1, softwareNuevo.getNombre());
                 prepararSentencia.setString(2, softwareNuevo.getVersion());
@@ -204,7 +203,7 @@ public static ArrayList<Software> consultarSoftware() throws SQLException {
         Connection conexionBD = ConexionBD.abrirConexionBD();
         if(conexionBD != null){
             try {
-                String consulta = "SELECT * FROM software WHERE (nombre = ?, version = ?)";
+                String consulta = "SELECT * FROM software WHERE (nombre = ? and version = ?)";
                 PreparedStatement consultaDB = conexionBD.prepareStatement(consulta);
                 consultaDB.setString(1, nombre);
                 consultaDB.setString(2, version);

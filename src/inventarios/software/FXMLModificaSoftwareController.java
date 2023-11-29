@@ -34,13 +34,28 @@ public class FXMLModificaSoftwareController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
+    }
+    
+    void setSoftware(Software softwareSeleccionado){
+        this.software = softwareSeleccionado;
+        
+        int idSoftware = software.getIdSoftware();
+        String oldNombre = software.getNombre();
+        String oldVersion = software.getVersion();
+        String oldEditor = software.getEditor();
+        String oldTamaño = software.getTamaño();
+      
+        tfNombre.setText(oldNombre);
+        tfVersion.setText(oldVersion);
+        tfEditor.setText(oldEditor);
+        tfTamaño.setText(oldTamaño);
+    }
 
     @FXML
     private void modificarSoftware(ActionEvent event) {
         Software softwareNuevo = new Software();
         
-        int idSoftware = software.getIdEquipo();
+        int idSoftware = software.getIdSoftware();
         String nombre = tfNombre.getText();
         String version = tfVersion.getText();
         String editor = tfEditor.getText();
@@ -57,15 +72,20 @@ public class FXMLModificaSoftwareController implements Initializable {
         }else{
             SoftwareDAO sDao = new SoftwareDAO();
             try {
-                ResultadoOperacion resultado = sDao.modificarSoftware(idSoftware, softwareNuevo);
-                if(resultado.isError()){
+                boolean buscarSoftware = new SoftwareDAO().buscarSoftware(nombre, version);
+                if(buscarSoftware == false){
+                    ResultadoOperacion resultado = sDao.modificarSoftware(idSoftware, softwareNuevo);
+                    if(resultado.isError()){
                     Utilidades.mostrarAlertaSimple("Error", resultado.getMensaje(), Alert.AlertType.ERROR);
-                }else{
+                    }else{
                    Utilidades.mostrarAlertaSimple("Actualización exitosa", "Software actualizado con éxito.\n"+" Actualice la tabla para"
                             + "visualizar los cambios.", Alert.AlertType.INFORMATION);
                     Stage stage = (Stage) tfEditor.getScene().getWindow();
                     stage.close(); 
-                }
+                    }
+                }else{
+                    Utilidades.mostrarAlertaSimple("Error", "El software y su versión ya han sido registrados en la base de datos.", Alert.AlertType.ERROR);
+                }               
             } catch (SQLException e) {
                 Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);
             }
@@ -85,21 +105,5 @@ public class FXMLModificaSoftwareController implements Initializable {
         }else{
             alert.close();
         }
-    }
-    
-    void setSoftware(Software softwareSeleccionado){
-        this.software = softwareSeleccionado;
-        
-        int idSoftware = software.getIdSoftware();
-        String oldNombre = software.getNombre();
-        String oldVersion = software.getVersion();
-        String oldEditor = software.getEditor();
-        String oldTamaño = software.getTamaño();
-      
-        tfNombre.setText(oldNombre);
-        tfVersion.setText(oldVersion);
-        tfEditor.setText(oldEditor);
-        tfTamaño.setText(oldTamaño);
-    }
-    
+    }    
 }

@@ -82,8 +82,8 @@ public class Software {
         return tamaño;
     }
 
-    public void setTamaño(String tamano) {
-        this.tamaño = tamano;
+    public void setTamaño(String tamaño) {
+        this.tamaño = tamaño;
     }
 
     public String getFechaInstalacion() {

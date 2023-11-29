@@ -1,24 +1,11 @@
 package inventarios.software;
 
-import inventarios.pojo.EquipoHasSoftwareRespuesta;
-import inventarios.dao.EquipoDAO;
 import inventarios.pojo.Software;
-import inventarios.interfaz.INotificacionOperacion;
-import inventarios.dao.EquipoHasSoftwareDAO;
 import inventarios.dao.SoftwareDAO;
-import inventarios.pojo.Equipo;
-import inventarios.pojo.EquipoRespuesta;
 import inventarios.pojo.ResultadoOperacion;
-import inventarios.pojo.SoftwareListaRespuesta;
-import inventarios.pojo.SoftwareRespuesta;
-import inventarios.util.Constantes;
 import inventarios.util.Utilidades;
-import inventarios.util.SingletonSoftware;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,9 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -70,7 +54,13 @@ public class FXMLRegistrarSoftwareController implements Initializable {
     }
 
     @FXML
-    private void btnRegistrar(ActionEvent event) {
+    private void btnVolver(ActionEvent event) {
+        Stage stage = (Stage) tfEditor.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void registrarSoftware(ActionEvent event) {
         Software software = new Software();
         
         String nombre = tfNombre.getText();
@@ -108,11 +98,5 @@ public class FXMLRegistrarSoftwareController implements Initializable {
                 Utilidades.mostrarAlertaSimple("Error", "Error en la conexión con la base de datos. Intente de nuevo más tarde.", Alert.AlertType.ERROR);
             }
         }
-    }
-
-    @FXML
-    private void btnVolver(ActionEvent event) {
-        Stage stage = (Stage) tfEditor.getScene().getWindow();
-        stage.close();
     }
 }

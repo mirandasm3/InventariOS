@@ -11,7 +11,7 @@
 <AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="1036.0" style="-fx-background-color: 1036.0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLRegistrarSoftwareController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="153.0" stroke="#364450" strokeType="INSIDE" width="1036.0" />
-      <Button layoutX="880.0" layoutY="177.0" mnemonicParsing="false" onAction="#btnRegistrar" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
+      <Button layoutX="880.0" layoutY="177.0" mnemonicParsing="false" onAction="#registrarSoftware" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #364450;" text="Registrar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
