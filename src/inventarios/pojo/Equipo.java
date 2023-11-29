@@ -122,8 +122,8 @@ public class Equipo {
         return idCentroComputo;
     }
 
-    public void setIdCentroComputo(int nombreCentroComputo) {
-        this.idCentroComputo = nombreCentroComputo;
+    public void setIdCentroComputo(int idCentroComputo) {
+        this.idCentroComputo = idCentroComputo;
     }
 
     @Override

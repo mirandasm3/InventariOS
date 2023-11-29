@@ -40,12 +40,12 @@
                </font>
             </Label>
             <TextField fx:id="tfIdentificador" prefHeight="38.0" prefWidth="280.0" promptText="Ej. EQ01" GridPane.columnIndex="1" />
-            <Label text="Memoria RAM:" GridPane.rowIndex="1">
+            <Label text="Marca Memoria RAM:" GridPane.rowIndex="1">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="tfMemoriaRam" prefHeight="38.0" prefWidth="280.0" promptText="Ej. 16GB" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfMemoriaRam" prefHeight="38.0" prefWidth="280.0" promptText="Ej. Kingston" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Cantidad Memoria RAM:" GridPane.rowIndex="2">
                <font>
                   <Font name="Franklin Gothic Medium Cond" size="15.0" />
@@ -88,6 +88,12 @@
                </font>
             </Label>
             <TextField fx:id="tfSistemaOperativo" prefHeight="39.0" prefWidth="262.0" promptText="Ej. Windows" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label text="            Centro de cómputo" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbCC" prefHeight="31.0" prefWidth="285.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Text fill="WHITE" layoutX="37.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipos de cómputo">

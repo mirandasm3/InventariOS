@@ -1,30 +1,19 @@
 
 package inventarios.software;
 
-import inventarios.InventariOS;
-import inventarios.interfaz.INotificacionOperacion;
-import inventarios.dao.EquipoHasSoftwareDAO;
+
 import inventarios.dao.SoftwareDAO;
 import inventarios.pojo.ResultadoOperacion;
 import inventarios.pojo.Software;
-import inventarios.pojo.SoftwareListaRespuesta;
-import inventarios.util.Constantes;
 import inventarios.util.Utilidades;
-import inventarios.util.SingletonSoftware;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,14 +22,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -60,6 +46,7 @@ public class FXMLConsultaSoftwareController implements Initializable {
     private TableView<Software> tvSoftware;
     
     ObservableList<Software> listaSoftwares = FXCollections.observableArrayList();
+    ObservableList<Software> filtroListaSoftwares = FXCollections.observableArrayList();
     
 
     @Override
@@ -73,6 +60,7 @@ public class FXMLConsultaSoftwareController implements Initializable {
         tvSoftware.setItems(listaSoftwares);        
     }
     
+    @FXML
     private void cargarTablaSoftware() {
         SoftwareDAO sDao = new SoftwareDAO();
         try {
@@ -106,6 +94,12 @@ public class FXMLConsultaSoftwareController implements Initializable {
                 escenarioNuevo.setScene(escenaAdmin);
                 escenarioNuevo.initModality(Modality.APPLICATION_MODAL);
                 escenarioNuevo.showAndWait();
+                
+                if(softwareSeleccionado != null){
+                   if(softwareSeleccionado.getNombre().toLowerCase().contains(this.tfBusqueda.getText().toLowerCase())){
+                       this.filtroListaSoftwares.remove(softwareSeleccionado);
+                   } 
+                }
             } catch (IOException e) {
                 Utilidades.mostrarAlertaSimple("Error", "Error al cargar la página.", Alert.AlertType.ERROR);
             }
@@ -135,6 +129,7 @@ public class FXMLConsultaSoftwareController implements Initializable {
                     }else{
                         Utilidades.mostrarAlertaSimple("Eliminación exitosa", "Software eliminado con éxito.", Alert.AlertType.INFORMATION);
                         listaSoftwares.remove(softwareSeleccionado);
+                        filtroListaSoftwares.remove(softwareSeleccionado);
                         tvSoftware.refresh();
                     }
                 } catch (SQLException e) {
@@ -150,5 +145,23 @@ public class FXMLConsultaSoftwareController implements Initializable {
     private void volver(ActionEvent event) {
         Stage stage = (Stage) tfBusqueda.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void filtrarTabla(KeyEvent event) {
+        String filtroBusqueda = tfBusqueda.getText();
+        
+        if(filtroBusqueda.isEmpty()){
+            this.tvSoftware.setItems(listaSoftwares);
+        }else{
+            this.filtroListaSoftwares.clear();
+            for(Software s:this.listaSoftwares){
+                if(s.getNombre().toLowerCase().contains(filtroBusqueda)){
+                    this.filtroListaSoftwares.add(s);
+                }                
+            }
+            
+            this.tvSoftware.setItems(filtroListaSoftwares);
+        }
     }
 }

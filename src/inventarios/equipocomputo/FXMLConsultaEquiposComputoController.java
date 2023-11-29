@@ -115,7 +115,8 @@ public class FXMLConsultaEquiposComputoController implements Initializable {
             EquipoDAO eDao = new EquipoDAO();
             
             try {
-                List<Equipo> resultados = eDao.consultarEquiposComputo(1);
+                int idCentro = CentroComputoDAO.buscarCC(cc).getIdCC();
+                List<Equipo> resultados = eDao.consultarEquiposComputo(idCentro);
                 listaEquipos.clear();
                 if(resultados != null){
                     listaEquipos.addAll(resultados);
