@@ -75,7 +75,7 @@ public class FXMLRegistroEquipoComputoController implements Initializable {
         }else{
             EquipoDAO eDao = new EquipoDAO();
                 int cantidadRamInt = Integer.parseInt(cantidadRam);
-                equipoComputo.setIdCentroComputo(1);
+                equipoComputo.setNombreCentroComputo(1);
                 equipoComputo.setIdentificador(identificador);
                 equipoComputo.setMemoriaRAM(memoriaRam);
                 equipoComputo.setMemoriaRAMCantidad(cantidadRamInt);

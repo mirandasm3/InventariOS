@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/seren/Desktop/FEI/Noveno/Desarrollo%20de%20SW/ProyectoInventario/Código/InventariOS/src/inventarios/dao/EquipoHasSoftwareDAO.java</file>
             <file>file:/C:/Users/seren/Desktop/FEI/Noveno/Desarrollo%20de%20SW/ProyectoInventario/Código/InventariOS/src/inventarios/dao/SoftwareDAO.java</file>
+            <file>file:/C:/Users/seren/Desktop/FEI/Noveno/Desarrollo%20de%20SW/ProyectoInventario/Código/InventariOS/src/inventarios/equipocomputo/FXMLRegistroEquipoComputoController.java</file>
+            <file>file:/C:/Users/seren/Desktop/FEI/Noveno/Desarrollo%20de%20SW/ProyectoInventario/Código/InventariOS/src/inventarios/dao/EquipoDAO.java</file>
             <file>file:/C:/Users/seren/Desktop/FEI/Noveno/Desarrollo%20de%20SW/ProyectoInventario/Código/InventariOS/src/inventarios/software/FXMLRegistrarSoftwareController.java</file>
         </group>
     </open-files>

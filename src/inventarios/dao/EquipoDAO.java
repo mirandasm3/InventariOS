@@ -33,7 +33,7 @@ public class EquipoDAO {
                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
                 
                 PreparedStatement prepararSentencia = conexionBd.prepareStatement(sentencia);
-                prepararSentencia.setInt(1, equipoComputo.getIdCentroComputo());
+                prepararSentencia.setInt(1, equipoComputo.getNombreCentroComputo());
                 prepararSentencia.setString(2, equipoComputo.getIdentificador());
                 prepararSentencia.setString(3, equipoComputo.getProcesador());
                 prepararSentencia.setString(4, equipoComputo.getMemoriaRAM());
@@ -81,7 +81,7 @@ public class EquipoDAO {
                 while(resultadoConsulta.next()){
                     Equipo equipoComputoTemp = new Equipo();
                     equipoComputoTemp.setIdEquipoComputo(resultadoConsulta.getInt("idequipocomputo"));
-                    equipoComputoTemp.setIdCentroComputo(resultadoConsulta.getInt("centrocomputo_idcentrocomputo"));
+                    equipoComputoTemp.setNombreCentroComputo(resultadoConsulta.getInt("centrocomputo_idcentrocomputo"));
                     equipoComputoTemp.setIdentificador(resultadoConsulta.getString("identificador"));
                     equipoComputoTemp.setProcesador(resultadoConsulta.getString("procesador"));
                     equipoComputoTemp.setMemoriaRAM(resultadoConsulta.getString("memoriaRAM"));
@@ -201,7 +201,7 @@ public class EquipoDAO {
                 {
                     Equipo equipo = new Equipo();
                     equipo.setIdEquipoComputo(resultado.getInt("idequipocomputo"));
-                    equipo.setIdCentroComputo(resultado.getInt("centrocomputo.numero"));
+                    equipo.setNombreCentroComputo(resultado.getInt("centrocomputo.nombre"));
                     equipo.setIdentificador(resultado.getString("identificador"));
                     equipo.setProcesador(resultado.getString("procesador"));
                     equipo.setMemoriaRAM(resultado.getString("memoriaRAM"));
