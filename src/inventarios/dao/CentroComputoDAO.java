@@ -143,7 +143,7 @@ public class CentroComputoDAO {
         return ccTemporal;
     }
     
-    public static ResultadoOperacion modificarCC(int idCC, CentroComputo ccNuevo) throws SQLException{
+    public static ResultadoOperacion modificarCC(int idCC, int numero) throws SQLException{
         
         ResultadoOperacion respuesta = new ResultadoOperacion();
         respuesta.setError(true);
@@ -154,12 +154,11 @@ public class CentroComputoDAO {
            
             try {
 
-                String sentencia = "UPDATE centrocomputo set clave = ?, numero = ? WHERE (idcentrocomputo = ?)";
+                String sentencia = "UPDATE centrocomputo set numero = ? WHERE (idcentrocomputo = ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setString(1, ccNuevo.getClave());
-                prepararSentencia.setInt(2, ccNuevo.getNumero());
+                prepararSentencia.setInt(1, numero);
 
-                prepararSentencia.setInt(3, idCC);
+                prepararSentencia.setInt(2, idCC);
 
                 int numeroFilas = prepararSentencia.executeUpdate();
                 if(numeroFilas > 0){

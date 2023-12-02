@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventarios.software.FXMLModificaSoftwareController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#364450" height="68.0" stroke="TRANSPARENT" strokeType="INSIDE" width="600.0" />
+      <GridPane layoutX="81.0" layoutY="91.0" prefHeight="245.0" prefWidth="439.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Versión:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Editor:" wrappingWidth="100.35546875" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tamaño:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Franklin Gothic Medium Cond" size="23.0" />
+               </font>
+            </Text>
+            <TextField fx:id="tfVersion" prefHeight="31.0" prefWidth="231.0" promptText="Ejemplo: 1.0.0.1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfEditor" prefHeight="31.0" prefWidth="233.0" promptText="Ejemplo: Oracle" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="tfNombre" promptText="Ejemplo: Apache Netbeans" GridPane.columnIndex="1" />
+            <TextField fx:id="tfTamaño" promptText="Ejemplo: 5 GB" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="144.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="295.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <Button layoutX="320.0" layoutY="346.0" mnemonicParsing="false" onAction="#volver" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #EE6060;" text="Cancelar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="460.0" layoutY="346.0" mnemonicParsing="false" onAction="#modificarSoftware" prefHeight="31.0" prefWidth="121.0" style="-fx-background-color: #364450;" text="Modificar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -85,14 +85,20 @@ public class FXMLModificaEquipoComputoController implements Initializable {
         }else{
             EquipoDAO eDao = new EquipoDAO();
             try {
-                ResultadoOperacion resultado = eDao.modificarEquipo(id, equipoNuevo);
+                boolean buscarEquipo = new EquipoDAO().buscarEquipo(identificador);
+                if(buscarEquipo == false){
+                    ResultadoOperacion resultado = eDao.modificarEquipo(id, equipoNuevo);
                 if(resultado.isError()){
                     Utilidades.mostrarAlertaSimple("ERROR", "Error en la actualización", Alert.AlertType.ERROR);
                 }else{
                    Utilidades.mostrarAlertaSimple("Actualización exitosa", "Equipo de cómputo actualizado con éxito. Actualice la tabla para visualizar los cambios.", Alert.AlertType.INFORMATION);
                     Stage stage = (Stage) tfEspacioAlmacenamiento.getScene().getWindow();
                     stage.close(); 
+                    }
+                }else{
+                    Utilidades.mostrarAlertaSimple("Error", "El identificador ya ha sido registrado en la base de datos.", Alert.AlertType.ERROR);
                 }
+                
             } catch (Exception e) {
             }
         }

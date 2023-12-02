@@ -227,4 +227,28 @@ public class EquipoDAO {
         return respuesta;
     }
     
+    public static boolean buscarEquipo(String identificador) throws SQLException{
+        Equipo equipoTemp = null;
+        Connection conexionBD = ConexionBD.abrirConexionBD();
+        if(conexionBD != null){
+            try {
+                String consulta = "SELECT * FROM equipocomputo WHERE (identificador = ?)";
+                PreparedStatement consultaBD = conexionBD.prepareStatement(consulta);
+                consultaBD.setString(1, identificador);
+                ResultSet resultadoConsulta = consultaBD.executeQuery();
+                equipoTemp = new Equipo();
+                if(resultadoConsulta.next()){
+                    return true;
+                }else{
+                    return false;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally{
+                conexionBD.close();
+            }
+        }
+        return false;
+    }
+    
 }

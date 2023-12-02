@@ -46,19 +46,21 @@ public class FXMLInicioSesionController implements Initializable {
     private void btnIniciarSesion(ActionEvent event) {
         String usuario = tfUsuario.getText();
         String password = pfPassword.getText();
-        int noPersonal =  Integer.parseInt(usuario);
+
         boolean valido = true;
         lbUsuarioError.setText("");
         lbPasswordError.setText("");
+        
         if(usuario.isEmpty()){
             valido = false;
             lbUsuarioError.setText("Número de personal es requerido.");
-        }
-        if(password.isEmpty()){
-            valido = false;
-            lbPasswordError.setText("Contraseña es requerida.");
-        }
+            if(password.isEmpty()){
+                valido = false;
+                lbPasswordError.setText("Contraseña es requerida.");
+            }
+        } 
         if(valido){
+            int noPersonal =  Integer.parseInt(usuario);
             verificarCredencialesUsuario(noPersonal, password);
         }
     }
